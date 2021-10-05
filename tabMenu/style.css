@@ -1,0 +1,15 @@
+.tab-wrap { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+.tab-wrap + .tab-wrap { margin-top: 30px; }
+
+.tab-wrap__button { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; height: 50px; padding: 0; border: none; background-color: transparent; color: #aaa; cursor: pointer; }
+
+.tab-wrap--under-line .tab-wrap__button { border-bottom: 1px solid #ccc; }
+
+.tab-wrap--under-line .tab-wrap__button--active { border-bottom: 2px solid #000; color: #000; }
+
+.tab-wrap--background { background-color: #f5f5f5; border-radius: 6px; }
+
+.tab-wrap--background .tab-wrap__button { border: 1px solid transparent; border-radius: 6px; }
+
+.tab-wrap--background .tab-wrap__button--active { border-color: #eee; background-color: #fff; color: #000; }
