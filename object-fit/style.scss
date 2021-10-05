@@ -1,0 +1,61 @@
+@charset 'utf-8';
+
+.info {
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #000;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.text {
+  font-size: 24px;
+}
+
+.definition {
+  > dt,
+  > dd {
+    display: inline-block;
+    font-size: 24px;
+  }
+}
+
+.list {
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  > p {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .img_box img {
+    width: 300px;
+    height: 300px;
+  }
+
+  &:nth-child(1) .img_box img {
+    object-fit: contain;
+  }
+  &:nth-child(2) .img_box img {
+    object-fit: cover;
+  }
+  &:nth-child(3) .img_box img {
+    object-fit: fill;
+  }
+  &:nth-child(4) .img_box img {
+    object-fit: none;
+  }
+  &:nth-child(5) .img_box img {
+    object-fit: scale-down;
+  }
+
+  &.position--leftTop .img_box img {
+    object-position: left top;
+  }
+}

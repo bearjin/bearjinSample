@@ -1,0 +1,27 @@
+.info { padding-bottom: 20px; margin-bottom: 40px; border-bottom: 3px solid #000; }
+
+.title { font-size: 30px; }
+
+.text { font-size: 24px; }
+
+.definition > dt, .definition > dd { display: inline-block; font-size: 24px; }
+
+.list { margin-bottom: 30px; }
+
+.list:last-child { margin-bottom: 0; }
+
+.list > p { margin-bottom: 20px; font-size: 20px; }
+
+.list .img_box img { width: 300px; height: 300px; }
+
+.list:nth-child(1) .img_box img { -o-object-fit: contain; object-fit: contain; }
+
+.list:nth-child(2) .img_box img { -o-object-fit: cover; object-fit: cover; }
+
+.list:nth-child(3) .img_box img { -o-object-fit: fill; object-fit: fill; }
+
+.list:nth-child(4) .img_box img { -o-object-fit: none; object-fit: none; }
+
+.list:nth-child(5) .img_box img { -o-object-fit: scale-down; object-fit: scale-down; }
+
+.list.position--leftTop .img_box img { -o-object-position: left top; object-position: left top; }
