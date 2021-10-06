@@ -10,15 +10,31 @@
 <body>
   <section class="content">
     <div role="tablist" class="tab-wrap tab-wrap--under-line">
-      <button type="button" role="tab" class="tab-wrap__button tab-wrap__button--active">탭메뉴1</button>
-      <button type="button" role="tab" class="tab-wrap__button">탭메뉴2</button>
-      <button type="button" role="tab" class="tab-wrap__button">탭메뉴3</button>
+      <button type="button" role="tab" data-tabNum="0" class="tab-wrap__button tab-wrap__button--active">탭메뉴1</button>
+      <button type="button" role="tab" data-tabNum="1" class="tab-wrap__button">탭메뉴2</button>
+      <button type="button" role="tab" data-tabNum="2" class="tab-wrap__button">탭메뉴3</button>
     </div>
     <div role="tablist" class="tab-wrap tab-wrap--background">
-      <button type="button" role="tab" class="tab-wrap__button tab-wrap__button--active">탭메뉴1</button>
-      <button type="button" role="tab" class="tab-wrap__button">탭메뉴2</button>
-      <button type="button" role="tab" class="tab-wrap__button">탭메뉴3</button>
+      <button type="button" role="tab" data-tabNum="0" class="tab-wrap__button tab-wrap__button--active">탭메뉴1</button>
+      <button type="button" role="tab" data-tabNum="1" class="tab-wrap__button">탭메뉴2</button>
+      <button type="button" role="tab" data-tabNum="2" class="tab-wrap__button">탭메뉴3</button>
     </div>
+    <div role="tablist" class="tab-wrap tab-wrap--under-none">
+      <button type="button" role="tab" data-tabNum="0" class="tab-wrap__button tab-wrap__button--active">탭메뉴1</button>
+      <button type="button" role="tab" data-tabNum="1" class="tab-wrap__button">탭메뉴2</button>
+      <button type="button" role="tab" data-tabNum="2" class="tab-wrap__button">탭메뉴3</button>
+    </div>
+    <ul class="tab-contents">
+      <li class="tab-contents__item tab-contents__item--active">
+        <img src="./mountains_1.jpg" alt="배경이미지" />
+      </li>
+      <li class="tab-contents__item">
+        <img src="./mountains_2.jpg" alt="배경이미지" />
+      </li>
+      <li class="tab-contents__item">
+        <img src="./mountains_3.jpg" alt="배경이미지" />
+      </li>
+    </ul>
   </section>
   <script src="./index.js"></script>
   <script>

@@ -13,3 +13,15 @@
 .tab-wrap--background .tab-wrap__button { border: 1px solid transparent; border-radius: 6px; }
 
 .tab-wrap--background .tab-wrap__button--active { border-color: #eee; background-color: #fff; color: #000; }
+
+.tab-wrap--under-none .tab-wrap__button { border: 1px solid #f1f1f1; background-color: #f1f1f1; }
+
+.tab-wrap--under-none .tab-wrap__button--active { border-bottom: 1px solid #fff; background-color: #fff; color: #000; }
+
+.tab-contents { position: relative; }
+
+.tab-contents__item { position: absolute; left: 0; top: 0; width: 100%; text-align: center; visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-in; transition: all 0.3s ease-in; }
+
+.tab-contents__item--active { visibility: visible; opacity: 1; }
+
+.tab-contents__item > img { max-width: 100%; }

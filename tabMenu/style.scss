@@ -47,4 +47,41 @@
       }
     }
   }
+
+  &--under-none {
+    #{$this}__button {
+      border: 1px solid #f1f1f1;
+      background-color: #f1f1f1;
+
+      &--active {
+        border-bottom: 1px solid #fff;
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+
+.tab-contents {
+  position: relative;
+
+  &__item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+
+    &--active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    > img {
+      max-width: 100%;
+    }
+  }
 }
