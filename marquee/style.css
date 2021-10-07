@@ -1,10 +1,22 @@
-.marquee { overflow: hidden; }
+.marquee { overflow: hidden; position: relative; }
 
 .marquee > img:hover { -webkit-animation-play-state: paused; animation-play-state: paused; }
 
 .marquee--moveRightToLeft > img { padding-left: 100%; -webkit-animation: moveRightToLeft 10s infinite linear; animation: moveRightToLeft 10s infinite linear; }
 
 .marquee--moveLeftToRight > img { padding-right: 100%; margin-left: -210px; -webkit-animation: moveLeftToRight 10s infinite linear; animation: moveLeftToRight 10s infinite linear; }
+
+.marquee--moveTwoRightToLeft { height: 90px; }
+
+.marquee--moveTwoRightToLeft .marquee__item { position: absolute; width: 100%; -webkit-animation: moveRightToLeft 10s infinite linear; animation: moveRightToLeft 10s infinite linear; }
+
+.marquee--moveTwoRightToLeft .marquee__item:last-child { left: 100%; }
+
+.marquee--moveTwoLeftToRight { height: 90px; }
+
+.marquee--moveTwoLeftToRight .marquee__item { position: absolute; width: 100%; -webkit-animation: moveLeftToRight 10s infinite linear; animation: moveLeftToRight 10s infinite linear; }
+
+.marquee--moveTwoLeftToRight .marquee__item:last-child { left: -100%; }
 
 @-webkit-keyframes moveRightToLeft { 0% { -webkit-transform: translateX(0%); transform: translateX(0%); }
   100% { -webkit-transform: translateX(-100%); transform: translateX(-100%); } }

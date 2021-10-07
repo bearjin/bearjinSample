@@ -2,6 +2,7 @@
 
 .marquee {
   overflow: hidden;
+  position: relative;
 
   > img {
     &:hover {
@@ -15,11 +16,40 @@
       animation: moveRightToLeft 10s infinite linear;
     }
   }
+
   &--moveLeftToRight {
     > img {
       padding-right: 100%;
       margin-left: -210px;
       animation: moveLeftToRight 10s infinite linear;
+    }
+  }
+
+  &--moveTwoRightToLeft {
+    height: 90px;
+
+    .marquee__item {
+      position: absolute;
+      width: 100%;
+      animation: moveRightToLeft 10s infinite linear;
+
+      &:last-child {
+        left: 100%;
+      }
+    }
+  }
+
+  &--moveTwoLeftToRight {
+    height: 90px;
+
+    .marquee__item {
+      position: absolute;
+      width: 100%;
+      animation: moveLeftToRight 10s infinite linear;
+
+      &:last-child {
+        left: -100%;
+      }
     }
   }
 }
