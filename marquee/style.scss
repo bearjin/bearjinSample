@@ -2,13 +2,6 @@
 
 .marquee {
   overflow: hidden;
-  position: relative;
-
-  > img {
-    &:hover {
-      animation-play-state: paused;
-    }
-  }
 
   &--moveRightToLeft {
     > img {
@@ -26,30 +19,23 @@
   }
 
   &--moveTwoRightToLeft {
-    height: 90px;
+    display: flex;
 
     .marquee__item {
-      position: absolute;
+      flex-shrink: 0;
       width: 100%;
       animation: moveRightToLeft 10s infinite linear;
-
-      &:last-child {
-        left: 100%;
-      }
     }
   }
 
   &--moveTwoLeftToRight {
-    height: 90px;
+    display: flex;
+    flex-direction: row-reverse;
 
     .marquee__item {
-      position: absolute;
+      flex-shrink: 0;
       width: 100%;
       animation: moveLeftToRight 10s infinite linear;
-
-      &:last-child {
-        left: -100%;
-      }
     }
   }
 }
