@@ -4,20 +4,40 @@
   overflow: hidden;
 
   > img {
-    padding-left: 100%;
-    animation: marquee 10s infinite linear;
-
     &:hover {
       animation-play-state: paused;
     }
   }
+
+  &--moveRightToLeft {
+    > img {
+      padding-left: 100%;
+      animation: moveRightToLeft 10s infinite linear;
+    }
+  }
+  &--moveLeftToRight {
+    > img {
+      padding-right: 100%;
+      margin-left: -210px;
+      animation: moveLeftToRight 10s infinite linear;
+    }
+  }
 }
 
-@keyframes marquee {
+@keyframes moveRightToLeft {
   0% {
     transform: translateX(0%);
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes moveLeftToRight {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
