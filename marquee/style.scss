@@ -1,17 +1,26 @@
 @charset "utf-8";
 
 .marquee {
+  $this: &;
+
   overflow: hidden;
+  display: flex;
+
+  &:hover {
+    #{$this}__item {
+      animation-play-state: paused;
+    }
+  }
 
   &--moveRightToLeft {
-    > img {
+    #{$this}__item {
       padding-left: 100%;
       animation: moveRightToLeft 10s infinite linear;
     }
   }
 
   &--moveLeftToRight {
-    > img {
+    #{$this}__item {
       padding-right: 100%;
       margin-left: -210px;
       animation: moveLeftToRight 10s infinite linear;
@@ -19,9 +28,7 @@
   }
 
   &--moveTwoRightToLeft {
-    display: flex;
-
-    .marquee__item {
+    #{$this}__item {
       flex-shrink: 0;
       width: 100%;
       animation: moveRightToLeft 10s infinite linear;
@@ -29,10 +36,9 @@
   }
 
   &--moveTwoLeftToRight {
-    display: flex;
     flex-direction: row-reverse;
 
-    .marquee__item {
+    #{$this}__item {
       flex-shrink: 0;
       width: 100%;
       animation: moveLeftToRight 10s infinite linear;

@@ -1,14 +1,14 @@
-.marquee { overflow: hidden; }
+.marquee { overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; }
 
-.marquee--moveRightToLeft > img { padding-left: 100%; -webkit-animation: moveRightToLeft 10s infinite linear; animation: moveRightToLeft 10s infinite linear; }
+.marquee:hover .marquee__item { -webkit-animation-play-state: paused; animation-play-state: paused; }
 
-.marquee--moveLeftToRight > img { padding-right: 100%; margin-left: -210px; -webkit-animation: moveLeftToRight 10s infinite linear; animation: moveLeftToRight 10s infinite linear; }
+.marquee--moveRightToLeft .marquee__item { padding-left: 100%; -webkit-animation: moveRightToLeft 10s infinite linear; animation: moveRightToLeft 10s infinite linear; }
 
-.marquee--moveTwoRightToLeft { display: -webkit-box; display: -ms-flexbox; display: flex; }
+.marquee--moveLeftToRight .marquee__item { padding-right: 100%; margin-left: -210px; -webkit-animation: moveLeftToRight 10s infinite linear; animation: moveLeftToRight 10s infinite linear; }
 
 .marquee--moveTwoRightToLeft .marquee__item { -ms-flex-negative: 0; flex-shrink: 0; width: 100%; -webkit-animation: moveRightToLeft 10s infinite linear; animation: moveRightToLeft 10s infinite linear; }
 
-.marquee--moveTwoLeftToRight { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: reverse; -ms-flex-direction: row-reverse; flex-direction: row-reverse; }
+.marquee--moveTwoLeftToRight { -webkit-box-orient: horizontal; -webkit-box-direction: reverse; -ms-flex-direction: row-reverse; flex-direction: row-reverse; }
 
 .marquee--moveTwoLeftToRight .marquee__item { -ms-flex-negative: 0; flex-shrink: 0; width: 100%; -webkit-animation: moveLeftToRight 10s infinite linear; animation: moveLeftToRight 10s infinite linear; }
 
