@@ -12,6 +12,8 @@
 
 .marquee--moveTwoLeftToRight .marquee__item { -ms-flex-negative: 0; flex-shrink: 0; width: 100%; -webkit-animation: moveLeftToRight 10s infinite linear; animation: moveLeftToRight 10s infinite linear; }
 
+.marquee--script .marquee__item { -ms-flex-negative: 0; flex-shrink: 0; width: 100%; }
+
 @-webkit-keyframes moveRightToLeft { 0% { -webkit-transform: translateX(0%); transform: translateX(0%); }
   100% { -webkit-transform: translateX(-100%); transform: translateX(-100%); } }
 

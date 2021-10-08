@@ -44,6 +44,13 @@
       animation: moveLeftToRight 10s infinite linear;
     }
   }
+
+  &--script {
+    #{$this}__item {
+      flex-shrink: 0;
+      width: 100%;
+    }
+  }
 }
 
 @keyframes moveRightToLeft {
