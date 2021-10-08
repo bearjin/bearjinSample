@@ -9,17 +9,17 @@
 </head>
 <body>
   <section class="content">
-    <div class="marquee marquee--moveRightToLeft">
+    <div class="marquee" data-direction="left">
       <div class="marquee__item">
         <img src="./musinsa_store.jpg" alt="무신사 스토어">
       </div>
     </div>
-    <div class="marquee marquee--moveLeftToRight">
+    <div class="marquee" data-direction="right">
       <div class="marquee__item">
         <img src="./musinsa_store.jpg" alt="무신사 스토어">
       </div>
     </div>
-    <div class="marquee marquee--moveTwoRightToLeft">
+    <div class="marquee" data-direction="left">
       <div class="marquee__item">
         <img src="./musinsa_standard.jpg" alt="무신사 스탠다드">
       </div>
@@ -27,15 +27,7 @@
         <img src="./musinsa_standard.jpg" alt="무신사 스탠다드">
       </div>
     </div>
-    <div class="marquee marquee--moveTwoLeftToRight">
-      <div class="marquee__item">
-        <img src="./musinsa_standard.jpg" alt="무신사 스탠다드">
-      </div>
-      <div class="marquee__item">
-        <img src="./musinsa_standard.jpg" alt="무신사 스탠다드">
-      </div>
-    </div>
-    <div class="marquee marquee--script">
+    <div class="marquee" data-direction="right">
       <div class="marquee__item">
         <img src="./musinsa_standard.jpg" alt="무신사 스탠다드">
       </div>
@@ -46,7 +38,7 @@
   </section>
   <script src="./index.js"></script>
   <script>
-    moveRightToLeft();
+    marqueeMotion();
   </script>
 </body>
 </html>

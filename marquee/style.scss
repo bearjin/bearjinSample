@@ -45,7 +45,24 @@
     }
   }
 
-  &--script {
+  &--itemOne {
+    &[data-direction="left"] {
+      #{$this}__item {
+        padding-left: 100%;
+      }
+    }
+    &[data-direction="right"] {
+      #{$this}__item {
+        padding-right: 100%;
+      }
+    }
+  }
+
+  &--itemTwo {
+    &[data-direction="right"] {
+      flex-direction: row-reverse;
+    }
+
     #{$this}__item {
       flex-shrink: 0;
       width: 100%;
