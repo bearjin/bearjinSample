@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div id="popup" class="popup">
+  <div id="popup" class="popup is-active">
     <div class="popup-inner">
       <h2>팝업 타이틀</h2>
       <div class="popup-content">
@@ -66,8 +66,22 @@
           </li>
         </ul>
       </div>
-      <button type="button" class="popup-btn">확인</button>
+      <button type="button" id="popupCloseBtn" class="popup-btn">확인</button>
     </div>
   </div>
+  <button type="button" id="popupOpenBtn" class="popup-btn">팝업 오픈</button>
+  <script>
+    const popup = document.querySelector('.popup');
+    const popupCloseBtn = document.querySelector('#popupCloseBtn');
+    const popupOpenBtn = document.querySelector('#popupOpenBtn');
+
+    popupCloseBtn.addEventListener('click', () => {
+      popup.classList.remove('is-active');
+    });
+
+    popupOpenBtn.addEventListener('click', () => {
+      popup.classList.add('is-active');
+    });
+  </script>
 </body>
 </html>
