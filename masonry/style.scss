@@ -28,10 +28,10 @@
 @keyframes FadeIn {
   0% {
     opacity: 0;
-    transform: scale(.4);
+    transform: scale(.4) translate3d(80px, 100px, -300px);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translate3d(0, 0, 0);
   }
 }

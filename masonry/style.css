@@ -7,15 +7,15 @@
 .masonry__item > img { width: 100%; }
 
 @-webkit-keyframes FadeIn { 0% { opacity: 0;
-    -webkit-transform: scale(0.4);
-            transform: scale(0.4); }
+    -webkit-transform: scale(0.4) translate3d(80px, 100px, -300px);
+            transform: scale(0.4) translate3d(80px, 100px, -300px); }
   100% { opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+            transform: scale(1) translate3d(0, 0, 0); } }
 
 @keyframes FadeIn { 0% { opacity: 0;
-    -webkit-transform: scale(0.4);
-            transform: scale(0.4); }
+    -webkit-transform: scale(0.4) translate3d(80px, 100px, -300px);
+            transform: scale(0.4) translate3d(80px, 100px, -300px); }
   100% { opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+            transform: scale(1) translate3d(0, 0, 0); } }
