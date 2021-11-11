@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.masonry {
+  column-count: 4;
+  column-gap: 1em;
+
+  &__item {
+    display: inline-block;
+    width: 100%;
+    padding: 1em;
+    margin: 0 0 1.5em;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 2px 2px 4px 0 #ccc;
+    list-style: none;
+    opacity: 0;
+    animation: FadeIn 3s forwards;
+
+    > img {
+      width: 100%;
+    }
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

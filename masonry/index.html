@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <ul class="masonry">
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-Chalet-St.-Mortiz-01.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-BunkerToren-01-Overview-Park.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-West-399-01.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-HOLT-01.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-KJ-Plein-01.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-Merckt-Hero-LR.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-Villa-1-52.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-Villa-JM-00.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-Villa-L-02.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-Villa-MW-00.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-5Tracks-01-1120x1400.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-DMC-Den-Haag-01-768x1152.jpg" alt="이미지"></li>
+    <li class="masonry__item"><img src="./images/Powerhouse-Company-LEAD-01-1120x1400.jpg" alt="이미지"></li>
+  </ul>
+  <script>
+    const items = document.querySelectorAll('.masonry__item');
+
+    items.forEach((item, index) => {
+      item.style = `animation-delay: ${index}s`;
+    });
+  </script>
+</body>
+</html>
