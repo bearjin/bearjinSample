@@ -25,9 +25,15 @@
   </ul>
   <script>
     const items = document.querySelectorAll('.masonry__item');
+    const maxAnimationDelay = 3;
+    const getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+    }
 
-    items.forEach((item, index) => {
-      item.style = `animation-delay: ${index}s`;
+    items.forEach((item) => {
+      item.style = `animation-delay: ${getRandomInt(0, 10) * maxAnimationDelay / 10}s`;
     });
   </script>
 </body>
