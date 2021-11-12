@@ -1,23 +1,62 @@
-import React, {useState } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const Counter = () => {
-  const [counter, setCounter] = useState(0);
+const StyledCounter = styled.div`
+  text-align: center;
+`;
 
-  const increment = () => {
-    setCounter(prevCounter => prevCounter + 1);
+const StyledButton = styled.button`
+  & + & {
+    margin-left: 10px;
+  }
+`;
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.incrementAsync = this.incrementAsync.bind(this);
+    this.incrementIfOdd = this.incrementIfOdd.bind(this);
+  } 
+
+  incrementIfOdd() {
+    if (this.props.value % 2 !== 0) {
+      this.props.onIncrement();
+    }
   }
 
-  const decrement = () => {
-    setCounter(prevCounter => prevCounter - 1);
+  incrementAsync() {
+    setTimeout(this.props.onIncrement, 1000);
   }
 
-  return (
-    <div className="counter">
-      <p>Value: {counter}</p>
-      <button type="button" onClick={increment}>Increment</button>
-      <button type="button" onClick={decrement}>Decrement</button>
-    </div>
-  );
-};
+  render() {
+    const { value, onIncrement, onDecrement } = this.props
+    return (
+      <StyledCounter>
+        <p>
+          Clicked: {value}
+        </p>
+        <StyledButton type="button" onClick={onIncrement}>
+          +
+        </StyledButton>
+        <StyledButton type="button" onClick={onDecrement}>
+          -
+        </StyledButton>
+        <StyledButton type="button" onClick={this.incrementIfOdd}>
+          Increment if odd
+        </StyledButton>
+        <StyledButton type="button" onClick={this.incrementAsync}>
+          Increment async
+        </StyledButton>
+      </StyledCounter>
+    )
+  }
+}
+
+Counter.propTypes = {
+  value: PropTypes.number.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired
+}
 
 export default Counter;
