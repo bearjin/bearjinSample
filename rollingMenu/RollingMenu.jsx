@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledRolling = styled.div`
+  overflow: hidden;
+  height: 30px;
   padding: 0 15px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 `;
 
 const StyledList = styled.ul`
-  overflow: hidden;
-  height: 30px;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  padding: 0;
+  margin: 0;
+  transition: all .5s ease-in;
 `;
 
 const StyledItem = styled.li`
@@ -109,9 +112,37 @@ const menuData = [
 ]
 
 const rollingMenu = () => {
+  const rollingTarget = useRef();
+
+  const rollingAnimation = () => {
+    const target = rollingTarget.current;
+    const targetItem = target.querySelector('li');
+    const itemHeight = targetItem.getBoundingClientRect().height;
+    const maxMove = target.getBoundingClientRect().height;
+    let move = 0;
+    let timing;
+
+    const ani = () => {
+      move += itemHeight;
+      target.setAttribute('style', `transform: translateY(-${move}px)`);
+      
+      if (move >= maxMove) {
+        clearInterval(timing);
+        target.setAttribute('style', `transform: translateY(0); transition: none;`);
+        move = 0;
+        timing = setInterval(ani, 1000);
+      }
+    }
+    timing = setInterval(ani, 1000);
+  }
+
+  useEffect(() => {
+    rollingAnimation();
+  });
+
   return (
     <StyledRolling>
-      <StyledList>
+      <StyledList ref={rollingTarget}>
         {
           menuData.map((item, index) => {
             return (
@@ -121,6 +152,12 @@ const rollingMenu = () => {
               </StyledItem>
             )
           })
+        }
+        {
+          <StyledItem className={menuData[0].ranking}>
+            <span>1</span>
+            <span>{menuData[0].name}</span>
+          </StyledItem>
         }
       </StyledList>
   </StyledRolling>
