@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD 앱 만들기</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js"></script>
+</head>
+<body>
+  <div id="subject"></div>
+  <div id="toc"></div>
+  <div id="control"></div>
+  <div id="content"></div>
+  <script> 
+    function subject(){
+      document.querySelector('#subject').innerHTML = `
+        <header>
+          <h1>WEB</h1>
+          Hello, WEB!
+        </header>
+      `;
+    }
+
+    function TOC(){
+      var state = store.getState();
+      console.log(state);
+      var i = 0;
+      var liTags = '';
+      state.contents.forEach(element => {
+        liTags += `
+          <li>
+            <a href="${element.id}.html" onclick="
+              event.preventDefault();
+              var action = {type: 'SELECT', id: ${element.id}}
+              store.dispatch(action);
+            ">${element.title}</a>
+          </li>
+        `
+      });
+      document.querySelector('#toc').innerHTML = `
+        <nav>
+          <ol>
+            ${liTags}
+          </ol>
+        </nav>    
+      `;
+    }
+
+    function control(){
+      document.querySelector('#control').innerHTML = `
+        <ul>
+          <li>
+            <a href="/create" onclick="
+              event.preventDefault();
+
+            ">create</a></li>
+          <li><button type="button">delete</button></li>
+        </ul>
+      `;
+    }
+
+    function article(){
+      var state = store.getState();
+      var i = 0;
+      var aTitle, aDesc; 
+      while (i < state.contents.length) {
+        if(state.contents[i].id === state.selected_id) {
+          aTitle = state.contents[i].title;
+          aDesc = state.contents[i].desc;
+          break;
+        }
+        i = i + 1;
+      }
+      document.querySelector('#content').innerHTML = `
+        <article>
+          <h2>${aTitle}</h2>
+          ${aDesc}
+        </article>
+      `;
+    }
+
+    function reducer(state, action){
+      if(state === undefined){
+        return {
+          mode: 'create',
+          selected_id: 1,
+          contents: [
+            {id: 1, title: 'HTML', desc: 'HTML is ..'},
+            {id: 2, title: 'CSS', desc: 'CSS is ..'},
+          ]
+        }
+      }
+      var newState;
+      if(action.type === 'SELECT'){
+        newState = Object.assign({}, state, {selected_id: action.id});
+      }
+      console.log(action, state, newState);
+      return newState;
+    }
+    var store = Redux.createStore(reducer);
+    store.subscribe(article);
+    subject();
+    TOC();
+    control();
+  </script>
+</body>
+</html>
