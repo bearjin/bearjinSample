@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .lottie-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      margin-top: 12px;
+      background-color: #fff;
+      border: 1px solid #000;
+      border-radius: 4px;
+      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .lottie-button.active {
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <a class="lottie-button">
+    <div id="lottie"></div>
+  </a>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.3/lottie_svg.min.js"></script>
+  <script type="text/javascript">
+    const $lottie = document.getElementById('lottie');
+    let anim;
+  
+    anim = lottie.loadAnimation({
+      container: $lottie,
+      render: 'svg',
+      loop: false,
+      autoplay: false,
+      path: 'https://musinsa.s3.ap-northeast-2.amazonaws.com/display/app/lottie/my_snap_200x50.json',
+      rendererSettings: { 
+        progressiveLoad: false, 
+      }
+    })
+
+    anim.addEventListener('DOMLoaded', () => {
+      let state = true;
+      anim.play();
+      anim.addEventListener('enterFrame', () => {
+        if(anim.currentFrame >= 29 && anim.currentFrame < 165 && state) {
+          $lottie.parentElement.classList.add('active');
+          state = false;
+        }
+
+        if(anim.currentFrame >= 165 && anim.currentFrame < 249 && !state) {
+          $lottie.parentElement.classList.remove('active');
+          state = true;
+        }
+
+        if(anim.currentFrame >= 249 && anim.currentFrame < 384 && state) {
+          $lottie.parentElement.classList.add('active');
+          state = false;
+        }
+
+        if(anim.currentFrame >= 384 && !state) {
+          $lottie.parentElement.classList.remove('active');
+          state = true;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
