@@ -5,11 +5,11 @@ const StyledDisplayNumber = styled.p`
   font-size: 30px;
 `;
 
-const DisplayNumber = () => {
+const DisplayNumber = ({ number }) => {  
   return (
     <div>
       <StyledDisplayNumber>
-        0
+        {number}
       </StyledDisplayNumber>
     </div>
   );

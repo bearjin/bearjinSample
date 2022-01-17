@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 
-const AddNumber = () => {
-  const [addNumber, setAddNumber] = useState();
-
+const AddNumber = ({ handleClickButton }) => {
+  const [inputNumber, setInputNumber] = useState(0);
   const handleInputChange = (e) => {
-    setAddNumber(e.target.value);
+    setInputNumber(e.target.value);
   }
 
   return (
     <div>
-      <input type="text" value={addNumber} onChange={handleInputChange} />
-      <button type="button" style={{ marginLeft: "10px"}}>+</button>
+      <input type="text" value={inputNumber} onChange={handleInputChange} />
+      <button type="button" style={{ marginLeft: "10px"}} onClick={() => handleClickButton(inputNumber)}>+</button>
     </div>
   );
 };
