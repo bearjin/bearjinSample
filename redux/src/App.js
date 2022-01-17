@@ -1,14 +1,26 @@
-import React from 'react'
-import FilterButton from './components/FilterButton'
-import AddTodo from './containers/AddTodo'
-import VisibleTodoList from './containers/VisibleTodoList'
+import React from 'react';
+import styled from 'styled-components';
+import AddNumberRoot from './components/AddNumberRoot';
+import DisplayNumberRoot from './components/DisplayNumberRoot';
+
+const StyledDiv = styled.div`
+  div {
+    padding: 20px;
+    border: 5px solid #000;
+  }
+
+  > div {
+    &:first-child {
+      margin-bottom: 30px;
+    }
+  }
+`;
 
 const App = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <FilterButton />
-  </div>
+  <StyledDiv>
+    <AddNumberRoot />
+    <DisplayNumberRoot />
+  </StyledDiv>
 )
 
 export default App
