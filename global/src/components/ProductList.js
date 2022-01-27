@@ -5,27 +5,62 @@ import GoodsData from '../data/goods.json';
 
 const listData = GoodsData.data.list;
 
+const ProductList = () => {
+  return (
+    <StyledWrapSection>
+      <StyledListUl>
+        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, saleRate, linkUrl, brandLinkUrl }, index) => (
+          <StyledListLi key={goodsNo}>
+            <StyledThumnailA href={linkUrl}>
+              <img src={imageUrl} alt={goodsName} />
+            </StyledThumnailA>
+            <StyledInformationA href={brandLinkUrl}>
+              <StyledNameP>
+                {brandName}
+              </StyledNameP>
+              <StyledNameP strong>
+                {goodsName}
+              </StyledNameP>
+              <StyledPriceP>
+                <span>
+                  {saleRate > 0 && <del>{normalPrice}원</del>}
+                  {price}원
+                </span>
+                {saleRate > 0 && (
+                  <StyledSaleRateSpan>
+                    {saleRate}%
+                  </StyledSaleRateSpan>
+                )}
+              </StyledPriceP>
+            </StyledInformationA>
+          </StyledListLi>
+        ))}
+      </StyledListUl>
+    </StyledWrapSection>
+  );
+};
+
 const StyledWrapSection = styled.section`
   padding: 15px;
 `;
 
 const StyledListUl = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const StyledListLi = styled.li`
-  flex: 0 0 100%;
-  padding: 10px;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 30px;
 
   ${variables.mediaTablet} {
-    flex-basis: 50%;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   ${variables.mediaDesktop} {
-    flex-basis: calc(100% / 3);
+    grid-template-columns: repeat(4, 1fr);
   }
+`;
+
+const StyledListLi = styled.li`
+  min-width: 0;
+  max-width: 100%;
 `;
 
 const StyledThumnailA = styled.a`
@@ -49,6 +84,10 @@ const StyledInformationA = styled.a`
 `;
 
 const StyledNameP = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   ${props => props.strong && css`font-weight: bold;`}
 
   & + & {
@@ -66,46 +105,11 @@ const StyledPriceP = styled.p`
     font-weight: bold;
     color: red;
   }
-
-  .sale-rate {
-    font-weight: bold;
-    color: red;
-  }
 `;
 
-const ProductList = () => {
-  return (
-    <StyledWrapSection>
-      <StyledListUl>
-        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, saleRate, linkUrl, brandLinkUrl }, index) => (
-          <StyledListLi key={goodsNo}>
-            <StyledThumnailA href={linkUrl}>
-              <img src={imageUrl} alt={goodsName} />
-            </StyledThumnailA>
-            <StyledInformationA href={brandLinkUrl}>
-              <StyledNameP>
-                {brandName}
-              </StyledNameP>
-              <StyledNameP strong>
-                {goodsName}
-              </StyledNameP>
-              <StyledPriceP>
-                <span>
-                  {saleRate > 0 && <del>{normalPrice}원</del>}
-                  {price}원
-                </span>
-                {saleRate > 0 && (
-                  <span className='sale-rate'>
-                    {saleRate}%
-                  </span>
-                )}
-              </StyledPriceP>
-            </StyledInformationA>
-          </StyledListLi>
-        ))}
-      </StyledListUl>
-    </StyledWrapSection>
-  );
-};
+const StyledSaleRateSpan = styled.span`
+  font-weight: bold;
+  color: red;
+`;
 
 export default ProductList;
