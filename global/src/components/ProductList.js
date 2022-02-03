@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import mixins from '../style/mixins';
 import variables from '../style/variables';
+import Like from './Like';
 import GoodsData from '../data/goods.json';
 
 const listData = GoodsData.data.list;
@@ -10,7 +11,7 @@ const ProductList = () => {
   return (
     <StyledWrapSection>
       <StyledListUl>
-        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive }, index) => (
+        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive, isLike }, index) => (
           <StyledListLi key={goodsNo}>
             <StyledThumnailA href={linkUrl}>
               <StyledImageBoxDiv isSoldOut={isSoldOut}>
@@ -38,6 +39,9 @@ const ProductList = () => {
                   )}
                 </StyledProductLabelWrapDiv>
               )}
+              <StyledLikeDiv>
+                <Like isLike={isLike} />
+              </StyledLikeDiv>
             </StyledThumnailA>
             <StyledInformationA href={brandLinkUrl}>
               <StyledNameP>
@@ -190,6 +194,12 @@ const StyledPriceP = styled.p`
 const StyledSaleRateSpan = styled.span`
   font-weight: bold;
   color: red;
+`;
+
+const StyledLikeDiv = styled.div`
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
 `;
 
 export default ProductList;

@@ -13,7 +13,8 @@
         "isSale": true,
         "saleRate": 20,
         "isSoldOut": false,
-        "isExclusive": false
+        "isExclusive": false,
+        "isLike": false
       },
       {
         "goodsNo": 1163605,
@@ -27,7 +28,8 @@
         "isSale": true,
         "saleRate": 34,
         "isSoldOut": true,
-        "isExclusive": true
+        "isExclusive": true,
+        "isLike": true
       },
       {
         "goodsNo": 1628383,
@@ -41,7 +43,8 @@
         "isSale": true,
         "saleRate": 50,
         "isSoldOut": false,
-        "isExclusive": false
+        "isExclusive": false,
+        "isLike": false
       },
       {
         "goodsNo": 2085371,
@@ -55,7 +58,8 @@
         "isSale": true,
         "saleRate": 17,
         "isSoldOut": false,
-        "isExclusive": false
+        "isExclusive": false,
+        "isLike": false
       },
       {
         "goodsNo": 1582356,
@@ -69,7 +73,8 @@
         "isSale": true,
         "saleRate": 37,
         "isSoldOut": false,
-        "isExclusive": true
+        "isExclusive": true,
+        "isLike": false
       },
       {
         "goodsNo": 1757501,
@@ -83,7 +88,8 @@
         "isSale": true,
         "saleRate": 61,
         "isSoldOut": false,
-        "isExclusive": true
+        "isExclusive": true,
+        "isLike": true
       },
       {
         "goodsNo": 1742347,
@@ -97,7 +103,8 @@
         "isSale": true,
         "saleRate": 30,
         "isSoldOut": false,
-        "isExclusive": true
+        "isExclusive": true,
+        "isLike": false
       },
       {
         "goodsNo": 1679943,
@@ -111,7 +118,8 @@
         "isSale": true,
         "saleRate": 35,
         "isSoldOut": false,
-        "isExclusive": false
+        "isExclusive": false,
+        "isLike": false
       },
       {
         "goodsNo": 1549281,
@@ -125,7 +133,8 @@
         "isSale": false,
         "saleRate": 0,
         "isSoldOut": true,
-        "isExclusive": false
+        "isExclusive": false,
+        "isLike": true
       }
     ]
   }

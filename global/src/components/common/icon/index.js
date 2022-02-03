@@ -6,6 +6,7 @@ import IcMenubarBrand from './IcMenubarBrand';
 import IcMenubarLogo from './IcMenubarLogo';
 import IcMenubarLike from './IcMenubarLike';
 import IcMenubarProfile from './IcMenubarProfile';
+import IcLike from './IcLike';
 
 export {
   IcNotice,
@@ -16,4 +17,5 @@ export {
   IcMenubarLogo,
   IcMenubarLike,
   IcMenubarProfile,
+  IcLike,
 };
