@@ -44,8 +44,7 @@ const StyledMenuNav = styled.nav`
   position: sticky;
   bottom: 0;
   width: 100%;
-  height: 60px;
-  padding: 15px;
+  padding: 10px 15px;
   box-sizing: border-box;
   background-color: #000;
 `;
@@ -64,7 +63,7 @@ const StyledProfileIconSpan =  styled.span`
 
   width: 24px;
   height: 24px;
-  margin-bottom: 5px;
+  margin: 2px 0 4px;
   border-radius: 100%;
   background-color: gray;
 `;

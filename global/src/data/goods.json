@@ -27,7 +27,7 @@
         "isSale": true,
         "saleRate": 34,
         "isSoldOut": true,
-        "isExclusive": false
+        "isExclusive": true
       },
       {
         "goodsNo": 1628383,
@@ -124,7 +124,7 @@
         "normalPrice": 75000,
         "isSale": false,
         "saleRate": 0,
-        "isSoldOut": false,
+        "isSoldOut": true,
         "isExclusive": false
       }
     ]

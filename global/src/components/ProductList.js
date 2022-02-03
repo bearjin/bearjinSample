@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import mixins from '../style/mixins';
 import variables from '../style/variables';
 import GoodsData from '../data/goods.json';
 
@@ -9,10 +10,34 @@ const ProductList = () => {
   return (
     <StyledWrapSection>
       <StyledListUl>
-        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, saleRate, linkUrl, brandLinkUrl }, index) => (
+        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive }, index) => (
           <StyledListLi key={goodsNo}>
             <StyledThumnailA href={linkUrl}>
-              <img src={imageUrl} alt={goodsName} />
+              <StyledImageBoxDiv isSoldOut={isSoldOut}>
+                <img src={imageUrl} alt={goodsName} />
+              </StyledImageBoxDiv>
+              <StyledProductNumberSpan index={index}>
+                {index + 1}
+              </StyledProductNumberSpan>
+              {(isSale || isExclusive || isSoldOut) && (
+                <StyledProductLabelWrapDiv>
+                  {isSale && (
+                    <StyledProductLabelSpan isSale>
+                      설날세일
+                    </StyledProductLabelSpan>
+                  )}
+                  {isExclusive && (
+                    <StyledProductLabelSpan isExclusive>
+                      무신사단독
+                    </StyledProductLabelSpan>
+                  )}
+                  {isSoldOut && (
+                    <StyledProductLabelSpan isSoldOut>
+                      SOLD OUT
+                    </StyledProductLabelSpan>
+                  )}
+                </StyledProductLabelWrapDiv>
+              )}
             </StyledThumnailA>
             <StyledInformationA href={brandLinkUrl}>
               <StyledNameP>
@@ -23,10 +48,10 @@ const ProductList = () => {
               </StyledNameP>
               <StyledPriceP>
                 <span>
-                  {saleRate > 0 && <del>{normalPrice}원</del>}
+                  {isSale && <del>{normalPrice}원</del>}
                   {price}원
                 </span>
-                {saleRate > 0 && (
+                {isSale && (
                   <StyledSaleRateSpan>
                     {saleRate}%
                   </StyledSaleRateSpan>
@@ -69,14 +94,69 @@ const StyledThumnailA = styled.a`
   position: relative;
   padding-bottom: 120%;
   margin-bottom: 20px;
+`;
+
+const StyledImageBoxDiv = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
 
   img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
     width: 100%;
-    transform: translate(-50%, -50%);
   }
+
+  ${props => props.isSoldOut && css`
+    &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, .8);
+      content: '';
+    }
+  `}
+`;
+
+const StyledProductNumberSpan = styled.span`
+  ${mixins.flexCenter};
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+
+  ${props => props.index < 2 ? css`background-color: #000;` : css`background-color: #aaa;`}
+`;
+
+const StyledProductLabelWrapDiv = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+`;
+
+const StyledProductLabelSpan = styled.span`
+  display: inline-flex;
+  padding: 5px;
+  color: #fff;
+
+  ${props => {
+    if (props.isSale) {
+      return css`background-color: #ed0060;`;
+    }
+
+    if (props.isExclusive) {
+      return css`background-color: #18a286;`;
+    }
+
+    if (props.isSoldOut) {
+      return css`background-color: #ccc;`;
+    } 
+  }}
 `;
 
 const StyledInformationA = styled.a`
@@ -88,11 +168,11 @@ const StyledNameP = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  ${props => props.strong && css`font-weight: bold;`}
-
   & + & {
     margin-top: 10px;
   }
+
+  ${props => props.strong && css`font-weight: bold;`}
 `;
 
 const StyledPriceP = styled.p`
