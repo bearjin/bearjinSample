@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import {
   IcNotice,
   IcSearch,
@@ -7,20 +7,36 @@ import {
 } from './common/icon';
 
 const Header = () => {
+  const [noticeActive, setNoticeActive] = useState(false);
+  const [shoppingCount, setShoppingCount] = useState(0);
+
+  const handleNoticeActive = () => {
+    noticeActive ? setNoticeActive(false) : setNoticeActive(true);
+  }
+
+  const handleShoppingCount = () => {
+    shoppingCount < 10 ? setShoppingCount(shoppingCount + 1) : setShoppingCount(0);
+  }
+
   return (
     <StyledHeader>
       <StyldHeaderBox>
-        <StyledHeaderLinkA href="#">
+        <StyledHeaderNoticeA href="#" isActive={noticeActive} onClick={handleNoticeActive}>
           <IcNotice />
-        </StyledHeaderLinkA>
+        </StyledHeaderNoticeA>
       </StyldHeaderBox>
       <StyledLogoA href="#">로고</StyledLogoA>
       <StyldHeaderBox>
         <StyledHeaderLinkA href="#">
           <IcSearch />
         </StyledHeaderLinkA>
-        <StyledHeaderLinkA href="#">
+        <StyledHeaderLinkA href="#" onClick={handleShoppingCount}>
           <IcShoppingBag />
+          {shoppingCount > 0 && (
+            <StyledHeaderShoppingCountSpan>
+              {shoppingCount}
+            </StyledHeaderShoppingCountSpan>
+          )}
         </StyledHeaderLinkA>
       </StyldHeaderBox>
     </StyledHeader>
@@ -46,10 +62,46 @@ const StyldHeaderBox = styled.div``;
 
 const StyledHeaderLinkA = styled.a`
   display: inline-flex;
+  position: relative;
 
   & + & {
     margin-left: 5px;
   }
+`;
+
+const StyledHeaderNoticeA = styled(StyledHeaderLinkA)`
+  ${props => {
+    if (props.isActive) {
+      return css`
+        &::before {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 5px;
+          height: 5px;
+          border-radius: 100%;
+          background-color: rgba(0, 120, 255);
+          content: '';
+        }
+      `
+    }
+  }}
+`;
+
+const StyledHeaderShoppingCountSpan = styled.span`
+  display: inline-flex;
+  justify-content: center;
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: rgba(0, 120, 255);
+  line-height: 1;
+  color: #fff;
 `;
 
 export default Header;
