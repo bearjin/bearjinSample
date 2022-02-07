@@ -13,36 +13,36 @@ const ProductList = () => {
       <StyledListUl>
         {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive, isLike }, index) => (
           <StyledListLi key={goodsNo}>
-            <StyledThumnailA href={linkUrl}>
-              <StyledImageBoxDiv isSoldOut={isSoldOut}>
+            <StyledThumnailDiv>
+              <StyledImageLinkA href={linkUrl} isSoldOut={isSoldOut}>
                 <img src={imageUrl} alt={goodsName} />
-              </StyledImageBoxDiv>
-              <StyledProductNumberSpan index={index}>
-                {index + 1}
-              </StyledProductNumberSpan>
-              {(isSale || isExclusive || isSoldOut) && (
-                <StyledProductLabelWrapDiv>
-                  {isSale && (
-                    <StyledProductLabelSpan isSale>
-                      설날세일
-                    </StyledProductLabelSpan>
-                  )}
-                  {isExclusive && (
-                    <StyledProductLabelSpan isExclusive>
-                      무신사단독
-                    </StyledProductLabelSpan>
-                  )}
-                  {isSoldOut && (
-                    <StyledProductLabelSpan isSoldOut>
-                      SOLD OUT
-                    </StyledProductLabelSpan>
-                  )}
-                </StyledProductLabelWrapDiv>
-              )}
+                <StyledProductNumberSpan index={index}>
+                  {index + 1}
+                </StyledProductNumberSpan>
+                {(isSale || isExclusive || isSoldOut) && (
+                  <StyledProductLabelWrapDiv>
+                    {isSale && (
+                      <StyledProductLabelSpan isSale>
+                        설날세일
+                      </StyledProductLabelSpan>
+                    )}
+                    {isExclusive && (
+                      <StyledProductLabelSpan isExclusive>
+                        무신사단독
+                      </StyledProductLabelSpan>
+                    )}
+                    {isSoldOut && (
+                      <StyledProductLabelSpan isSoldOut>
+                        SOLD OUT
+                      </StyledProductLabelSpan>
+                    )}
+                  </StyledProductLabelWrapDiv>
+                )}
+              </StyledImageLinkA>
               <StyledLikeDiv>
                 <Like isLike={isLike} />
               </StyledLikeDiv>
-            </StyledThumnailA>
+            </StyledThumnailDiv>
             <StyledInformationA href={brandLinkUrl}>
               <StyledNameP>
                 {brandName}
@@ -92,15 +92,15 @@ const StyledListLi = styled.li`
   max-width: 100%;
 `;
 
-const StyledThumnailA = styled.a`
+const StyledThumnailDiv = styled.div`
   overflow: hidden;
-  display: block;
   position: relative;
   padding-bottom: 120%;
   margin-bottom: 20px;
 `;
 
-const StyledImageBoxDiv = styled.div`
+const StyledImageLinkA = styled.a`
+  display: block;
   position: absolute;
   left: 50%;
   top: 50%;

@@ -13,6 +13,11 @@ const GlobalStyles = createGlobalStyle`
     color: #000;
     text-decoration: none;
   }
+
+  button {
+    border: 0;
+    background-color: transparent;
+  }
 `;
 
 export default GlobalStyles;
