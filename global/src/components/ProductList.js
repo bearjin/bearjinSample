@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import mixins from '../style/mixins';
 import variables from '../style/variables';
 import Like from './Like';
+import Label from './Label';
 import GoodsData from '../data/goods.json';
 
 const listData = GoodsData.data.list;
@@ -23,21 +24,9 @@ const ProductList = () => {
                 </StyledProductNumberSpan>
                 {(isSale || isExclusive || isSoldOut) && (
                   <StyledProductLabelWrapDiv>
-                    {isSale && (
-                      <StyledProductLabelSpan isSale>
-                        설날세일
-                      </StyledProductLabelSpan>
-                    )}
-                    {isExclusive && (
-                      <StyledProductLabelSpan isExclusive>
-                        무신사단독
-                      </StyledProductLabelSpan>
-                    )}
-                    {isSoldOut && (
-                      <StyledProductLabelSpan isSoldOut>
-                        SOLD OUT
-                      </StyledProductLabelSpan>
-                    )}
+                    {isSale && <Label type={'isSale'} text={'설날 세일'} />}
+                    {isExclusive && <Label type={'isExclusive'} text={'무신사 단독'} />}
+                    {isSoldOut && <Label type={'isSoldOut'} text={'SOLD OUT'} />}
                   </StyledProductLabelWrapDiv>
                 )}
               </StyledImageLinkA>
@@ -150,26 +139,6 @@ const StyledProductLabelWrapDiv = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
-`;
-
-const StyledProductLabelSpan = styled.span`
-  display: inline-flex;
-  padding: 5px;
-  color: #fff;
-
-  ${props => {
-    if (props.isSale) {
-      return css`background-color: #ed0060;`;
-    }
-
-    if (props.isExclusive) {
-      return css`background-color: #18a286;`;
-    }
-
-    if (props.isSoldOut) {
-      return css`background-color: #ccc;`;
-    } 
-  }}
 `;
 
 const StyledInformationA = styled.a`
