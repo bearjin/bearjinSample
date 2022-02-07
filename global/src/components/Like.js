@@ -3,6 +3,26 @@ import styled, { keyframes } from 'styled-components';
 import mixins from '../style/mixins';
 import { IcLike } from './common/icon';
 
+const Like = ({ isLike }) => {
+  const [likeActive, setLikeActive] = useState(isLike);
+
+  const handleClickLike = (e) => {
+    const { currentTarget } = e;
+
+    if (currentTarget.classList.contains('isActive')) {
+      setLikeActive(false);
+    } else {
+      setLikeActive(true);
+    }
+  }
+
+  return (
+    <StyledButton className={likeActive ? 'isActive' : ''} onClick={handleClickLike}>
+      <IcLike />
+    </StyledButton>
+  );
+};
+
 const productLikeActive = keyframes`
   0% {
     transform: scale(1.2);
@@ -40,25 +60,5 @@ const StyledButton = styled.button`
     }
   }
 `;
-
-const Like = ({ isLike }) => {
-  const [likeActive, setLikeActive] = useState(isLike);
-
-  const handleClickLike = (e) => {
-    const { currentTarget } = e;
-
-    if (currentTarget.classList.contains('isActive')) {
-      setLikeActive(false);
-    } else {
-      setLikeActive(true);
-    }
-  }
-
-  return (
-    <StyledButton className={likeActive ? 'isActive' : ''} onClick={handleClickLike}>
-      <IcLike />
-    </StyledButton>
-  );
-};
 
 export default Like;

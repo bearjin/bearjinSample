@@ -14,8 +14,10 @@ const ProductList = () => {
         {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive, isLike }, index) => (
           <StyledListLi key={goodsNo}>
             <StyledThumnailDiv>
-              <StyledImageLinkA href={linkUrl} isSoldOut={isSoldOut}>
-                <img src={imageUrl} alt={goodsName} />
+              <StyledImageLinkA href={linkUrl} >
+                <StyledImageBoxDiv isSoldOut={isSoldOut}>
+                  <img src={imageUrl} alt={goodsName} />
+                </StyledImageBoxDiv>
                 <StyledProductNumberSpan index={index}>
                   {index + 1}
                 </StyledProductNumberSpan>
@@ -100,7 +102,14 @@ const StyledThumnailDiv = styled.div`
 `;
 
 const StyledImageLinkA = styled.a`
-  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;  
+`;
+
+const StyledImageBoxDiv = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
