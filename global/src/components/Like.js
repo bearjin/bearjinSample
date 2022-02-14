@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import mixins from '../style/mixins';
+import { colors } from '../style/variables';
 import { IcLike } from './common/icon';
 
 const Like = ({ isLike }) => {
@@ -52,7 +53,7 @@ const StyledButton = styled.button`
     
     .opacity-heart-inner {
       opacity: 1;
-      fill: red;
+      fill: ${colors.error};
     }
 
     .opacity-heart-line {

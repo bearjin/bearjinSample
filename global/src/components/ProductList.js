@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import mixins from '../style/mixins';
-import variables from '../style/variables';
+import { mediaQuery, colors} from '../style/variables';
 import Like from './Like';
 import Label from './Label';
 import GoodsData from '../data/goods.json';
@@ -69,11 +69,11 @@ const StyledListUl = styled.ul`
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 30px;
 
-  ${variables.mediaTablet} {
+  ${mediaQuery.mediaTablet} {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  ${variables.mediaDesktop} {
+  ${mediaQuery.mediaDesktop} {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
@@ -124,9 +124,9 @@ const StyledProductNumberSpan = styled.span`
 
   width: 30px;
   height: 30px;
-  color: #fff;
+  color: ${colors.white};
 
-  ${({index}) => index < 2 ? css`background-color: #000;` : css`background-color: #aaa;`}
+  ${({index}) => index < 2 ? css`background-color: ${colors.black}` : css`background-color: #aaa;`}
 `;
 
 const StyledProductLabelWrapDiv = styled.div`
@@ -157,13 +157,13 @@ const StyledPriceP = styled.p`
   del {
     margin-right: 10px;
     font-weight: bold;
-    color: red;
+    color: ${colors.error};
   }
 `;
 
 const StyledSaleRateSpan = styled.span`
   font-weight: bold;
-  color: red;
+  color: ${colors.error};
 `;
 
 const StyledLikeDiv = styled.div`

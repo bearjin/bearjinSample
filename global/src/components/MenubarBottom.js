@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import mixins from '../style/mixins';
+import { colors } from '../style/variables';
 import { 
   IcMenubarSearch, 
   IcMenubarBrand,
@@ -46,7 +47,7 @@ const StyledMenuNav = styled.nav`
   width: 100%;
   padding: 10px 15px;
   box-sizing: border-box;
-  background-color: #000;
+  background-color: ${colors.black};
 `;
 
 const StyledMenuLinkA = styled.a`
@@ -55,7 +56,7 @@ const StyledMenuLinkA = styled.a`
   align-items: center;
   font-size: 12px;
   line-height: 17px;
-  color: #fff;
+  color: ${colors.white};
 `;
 
 const StyledProfileIconSpan =  styled.span`

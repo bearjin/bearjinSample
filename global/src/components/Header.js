@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import mixins from '../style/mixins';
+import { colors } from '../style/variables'; 
 import {
   IcNotice,
   IcSearch,
@@ -54,7 +55,7 @@ const StyledHeader = styled.header`
   height: 50px;
   padding: 10px;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: ${colors.white};
 `;
 
 const StyledLogoA = styled.a``;
@@ -96,7 +97,7 @@ const StyledHeaderShoppingCountSpan = styled.span`
   box-sizing: border-box;
   background-color: rgba(0, 120, 255);
   line-height: 1;
-  color: #fff;
+  color: ${colors.white};
 `;
 
 export default Header;
