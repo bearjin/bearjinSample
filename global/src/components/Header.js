@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import mixins from '../style/mixins';
 import {
   IcNotice,
   IcSearch,
@@ -44,11 +45,11 @@ const Header = () => {
 };
 
 const StyledHeader = styled.header`
+  ${mixins.position('sticky', null, 0, null, null)};
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
   z-index: 10;
   height: 50px;
   padding: 10px;
@@ -70,30 +71,24 @@ const StyledHeaderLinkA = styled.a`
 `;
 
 const StyledHeaderNoticeA = styled(StyledHeaderLinkA)`
-  ${props => {
-    if (props.isActive) {
-      return css`
-        &::before {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 5px;
-          height: 5px;
-          border-radius: 100%;
-          background-color: rgba(0, 120, 255);
-          content: '';
-        }
-      `
+  ${({isActive}) => isActive && css`
+    &::before {
+      ${mixins.position('absolute', null, 0, null, 0)};
+
+      width: 5px;
+      height: 5px;
+      border-radius: 100%;
+      background-color: rgba(0, 120, 255);
+      content: '';
     }
-  }}
+  `}
 `;
 
 const StyledHeaderShoppingCountSpan = styled.span`
+  ${mixins.position('absolute', null, null, '-4px', '-4px')};
+
   display: inline-flex;
   justify-content: center;
-  position: absolute;
-  right: -4px;
-  bottom: -4px;
   min-width: 20px;
   height: 20px;
   padding: 5px;

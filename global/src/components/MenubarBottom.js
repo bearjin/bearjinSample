@@ -38,11 +38,11 @@ const MenubarBottom = () => {
 };
 
 const StyledMenuNav = styled.nav`
+  ${mixins.position('sticky', null, null, 0, null)};
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
-  bottom: 0;
   width: 100%;
   padding: 10px 15px;
   box-sizing: border-box;

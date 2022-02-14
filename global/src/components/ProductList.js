@@ -91,31 +91,27 @@ const StyledThumnailDiv = styled.div`
 `;
 
 const StyledImageLinkA = styled.a`
-  position: absolute;
-  left: 0;
-  top: 0;
+  ${mixins.position('absolute', 0, 0)};
+  
   width: 100%;
   height: 100%;  
 `;
 
-const StyledImageBoxDiv = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
+const StyledImageBoxDiv = styled.div`  
   width: 100%;
-  transform: translate(-50%, -50%);
+  height: 100%;
 
   img {
+    ${mixins.position('absolute', '50%', '50%')};
+
     width: 100%;
+    transform: translate(-50%, -50%);
   }
 
-  ${props => props.isSoldOut && css`
+  ${({isSoldOut}) => isSoldOut && css`
     &::after {
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
+      ${mixins.position('absolute', 0, 0, 0, 0)};
+
       background-color: rgba(255, 255, 255, .8);
       content: '';
     }
@@ -124,21 +120,17 @@ const StyledImageBoxDiv = styled.div`
 
 const StyledProductNumberSpan = styled.span`
   ${mixins.flexCenter};
+  ${mixins.position('absolute', 0, 0)};
 
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 30px;
   height: 30px;
   color: #fff;
 
-  ${props => props.index < 2 ? css`background-color: #000;` : css`background-color: #aaa;`}
+  ${({index}) => index < 2 ? css`background-color: #000;` : css`background-color: #aaa;`}
 `;
 
 const StyledProductLabelWrapDiv = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  ${mixins.position('absolute', 0, null, 0, null)};
 `;
 
 const StyledInformationA = styled.a`
@@ -154,7 +146,7 @@ const StyledNameP = styled.p`
     margin-top: 10px;
   }
 
-  ${props => props.strong && css`font-weight: bold;`}
+  ${({strong}) => strong && `font-weight: bold;`}
 `;
 
 const StyledPriceP = styled.p`
@@ -175,9 +167,7 @@ const StyledSaleRateSpan = styled.span`
 `;
 
 const StyledLikeDiv = styled.div`
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
+  ${mixins.position('absolute', null, null, '15px', '15px')};
 `;
 
 export default ProductList;

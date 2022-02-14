@@ -14,18 +14,12 @@ const StyledProductLabelSpan = styled.span`
   padding: 5px;
   color: #fff;
 
-  ${props => {
-    if (props.type === 'isSale') {
-      return css`background-color: #ed0060;`;
-    }
+  ${({type}) => {
+    if (type === 'isSale') return css`background-color: #ed0060;`;
 
-    if (props.type === 'isExclusive') {
-      return css`background-color: #18a286;`;
-    }
+    if (type === 'isExclusive') return css`background-color: #18a286;`;
 
-    if (props.type === 'isSoldOut') {
-      return css`background-color: #ccc;`;
-    } 
+    if (type === 'isSoldOut') return css`background-color: #ccc;`;
   }}
 `;
 
