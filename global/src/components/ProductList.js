@@ -8,57 +8,56 @@ import GoodsData from '../data/goods.json';
 
 const listData = GoodsData.data.list;
 
-const ProductList = ({ filterType }) => {
+const ProductList = ({ filterType, count }) => {
+  
   return (
     <StyledWrapSection>
       <StyledListUl>
-        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive, isLike, type }, index) => {
-          return (
-            (filterType === '전체' || filterType === type) ? (
-              <StyledListLi key={goodsNo + index}>
-                <StyledThumnailDiv>
-                  <StyledImageLinkA href={linkUrl} >
-                    <StyledImageBoxDiv isSoldOut={isSoldOut}>
-                      <img src={imageUrl} alt={goodsName} />
-                    </StyledImageBoxDiv>
-                    <StyledProductNumberSpan index={index}>
-                      {index + 1}
-                    </StyledProductNumberSpan>
-                    {(isSale || isExclusive || isSoldOut) && (
-                      <StyledProductLabelWrapDiv>
-                        {isSale && <Label type={'isSale'} text={'설날 세일'} />}
-                        {isExclusive && <Label type={'isExclusive'} text={'무신사 단독'} />}
-                        {isSoldOut && <Label type={'isSoldOut'} text={'SOLD OUT'} />}
-                      </StyledProductLabelWrapDiv>
-                    )}
-                  </StyledImageLinkA>
-                  <StyledLikeDiv>
-                    <Like isLike={isLike} />
-                  </StyledLikeDiv>
-                </StyledThumnailDiv>
-                <StyledInformationA href={brandLinkUrl}>
-                  <StyledNameP>
-                    {brandName}
-                  </StyledNameP>
-                  <StyledNameP strong>
-                    {goodsName}
-                  </StyledNameP>
-                  <StyledPriceP>
-                    <span>
-                      {isSale && <del>{normalPrice}원</del>}
-                      {price}원
-                    </span>
-                    {isSale && (
-                      <StyledSaleRateSpan>
-                        {saleRate}%
-                      </StyledSaleRateSpan>
-                    )}
-                  </StyledPriceP>
-                </StyledInformationA>
-              </StyledListLi>
-            ) : null
-          )
-        })}
+        {listData.map(({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, saleRate, linkUrl, brandLinkUrl, isSoldOut, isExclusive, isLike, type }, index) => (
+          (filterType === '전체' || filterType === type) ? (
+            <StyledListLi key={goodsNo + index}>
+              <StyledThumnailDiv>
+                <StyledImageLinkA href={linkUrl} >
+                  <StyledImageBoxDiv isSoldOut={isSoldOut}>
+                    <img src={imageUrl} alt={goodsName} />
+                  </StyledImageBoxDiv>
+                  <StyledProductNumberSpan index={count++}>
+                    {count}
+                  </StyledProductNumberSpan>
+                  {(isSale || isExclusive || isSoldOut) && (
+                    <StyledProductLabelWrapDiv>
+                      {isSale && <Label type={'isSale'} text={'설날 세일'} />}
+                      {isExclusive && <Label type={'isExclusive'} text={'무신사 단독'} />}
+                      {isSoldOut && <Label type={'isSoldOut'} text={'SOLD OUT'} />}
+                    </StyledProductLabelWrapDiv>
+                  )}
+                </StyledImageLinkA>
+                <StyledLikeDiv>
+                  <Like isLike={isLike} />
+                </StyledLikeDiv>
+              </StyledThumnailDiv>
+              <StyledInformationA href={brandLinkUrl}>
+                <StyledNameP>
+                  {brandName}
+                </StyledNameP>
+                <StyledNameP strong>
+                  {goodsName}
+                </StyledNameP>
+                <StyledPriceP>
+                  <span>
+                    {isSale && <del>{normalPrice}원</del>}
+                    {price}원
+                  </span>
+                  {isSale && (
+                    <StyledSaleRateSpan>
+                      {saleRate}%
+                    </StyledSaleRateSpan>
+                  )}
+                </StyledPriceP>
+              </StyledInformationA>
+            </StyledListLi>
+          ) : null
+        ))}
       </StyledListUl>
     </StyledWrapSection>
   );

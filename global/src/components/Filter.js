@@ -6,7 +6,7 @@ import FilterJson from '../data/categoryFilter.json';
 
 const FilterData = FilterJson.data;
 
-const Filter = ({ category, handleClickType }) => {
+const Filter = ({ category, handleClickType, handleClickCount }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const handleClickActive = (index) => setActiveIndex(index);
 
@@ -18,6 +18,7 @@ const Filter = ({ category, handleClickType }) => {
           <StyledFilterButton key={index} active={active} onClick={() => {
             handleClickType(title);
             handleClickActive(index);
+            handleClickCount();
           }}>
             {title}
           </StyledFilterButton>

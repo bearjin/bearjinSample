@@ -8,14 +8,16 @@ import Filter from './components/Filter';
 
 const App = () => {
   const [filterType, setFilterType] = useState('전체');
+  const [count, setCount] = useState(0);
   const handleClickType = (type) => setFilterType(type);
+  const handleClickCount = () => setCount(0);
 
   return (
     <>
       <GlobalStyles />
       <Header />
-      <Filter category={'ranking'} handleClickType={handleClickType} />
-      <ProductList filterType={filterType} />
+      <Filter category={'ranking'} handleClickType={handleClickType} handleClickCount={handleClickCount} />
+      <ProductList filterType={filterType} count={count} />
       <MenubarBottom />
     </>
   );
