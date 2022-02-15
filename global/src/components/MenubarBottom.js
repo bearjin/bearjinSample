@@ -12,48 +12,58 @@ import {
 
 const MenubarBottom = () => {
   return (
-    <StyledMenuNav>
-      <StyledMenuLinkA href="#">
-        <IcMenubarSearch />
-        메뉴 검색
-      </StyledMenuLinkA>
-      <StyledMenuLinkA>
-        <IcMenubarBrand />
-        브랜드
-      </StyledMenuLinkA>
-      <StyledMenuLinkA>
-        <IcMenubarLogo />
-      </StyledMenuLinkA>
-      <StyledMenuLinkA>
-        <IcMenubarLike />
-        좋아요
-      </StyledMenuLinkA>
-      <StyledMenuLinkA>
-        <StyledProfileIconSpan>
-          <IcMenubarProfile />
-        </StyledProfileIconSpan>
-        마이
-      </StyledMenuLinkA>
-    </StyledMenuNav>
+    <StyledMenuNavWrap>
+      <StyledMenuNav>
+        <StyledMenuLinkA href="#">
+          <IcMenubarSearch />
+          메뉴 검색
+        </StyledMenuLinkA>
+        <StyledMenuLinkA>
+          <IcMenubarBrand />
+          브랜드
+        </StyledMenuLinkA>
+        <StyledMenuLinkA>
+          <IcMenubarLogo />
+        </StyledMenuLinkA>
+        <StyledMenuLinkA>
+          <IcMenubarLike />
+          좋아요
+        </StyledMenuLinkA>
+        <StyledMenuLinkA>
+          <StyledProfileIconSpan>
+            <IcMenubarProfile />
+          </StyledProfileIconSpan>
+          마이
+        </StyledMenuLinkA>
+      </StyledMenuNav>
+    </StyledMenuNavWrap>
   );
 };
 
+const StyledMenuNavWrap = styled.div`
+  position: relative;
+  height: calc(env(safe-area-inset-bottom) + 60px);
+`;
+
 const StyledMenuNav = styled.nav`
-  ${mixins.position('sticky', null, null, 0, null)};
+  ${mixins.position('fixed', 0, null, 0, null)};
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 15px;
+  height: 60px;
+  padding-bottom: calc(env(safe-area-inset-bottom));
   box-sizing: border-box;
   background-color: ${colors.black};
 `;
 
 const StyledMenuLinkA = styled.a`
-  display: flex;
+  ${mixins.flexCenter};
+
+  flex: 1;
   flex-direction: column;
-  align-items: center;
+  height: 60px;
   font-size: 12px;
   line-height: 17px;
   color: ${colors.white};
@@ -66,7 +76,7 @@ const StyledProfileIconSpan =  styled.span`
   height: 24px;
   margin: 2px 0 4px;
   border-radius: 100%;
-  background-color: gray;
+  background-color: ${colors.gray300};
 `;
 
 export default MenubarBottom;

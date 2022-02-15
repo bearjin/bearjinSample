@@ -14,7 +14,8 @@
         "saleRate": 20,
         "isSoldOut": false,
         "isExclusive": false,
-        "isLike": false
+        "isLike": false,
+        "type": "상의"
       },
       {
         "goodsNo": 1163605,
@@ -29,7 +30,24 @@
         "saleRate": 34,
         "isSoldOut": true,
         "isExclusive": true,
-        "isLike": true
+        "isLike": true,
+        "type": "상의"
+      },
+      {
+        "goodsNo": 2313568,
+        "goodsName": "링클드 레더 블루종 (다크 그레이)",
+        "price": 249000,
+        "brandName": "엠엠지엘(MMGL)",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20220118/2313568/2313568_1_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/2313568?loc=goods_rank",
+        "brandLinkUrl": "https://www.musinsa.com/brands/mmgl",
+        "normalPrice": 279000,
+        "isSale": true,
+        "saleRate": 11,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": true,
+        "type": "아우터"
       },
       {
         "goodsNo": 1628383,
@@ -44,7 +62,8 @@
         "saleRate": 50,
         "isSoldOut": false,
         "isExclusive": false,
-        "isLike": false
+        "isLike": false,
+        "type": "상의"
       },
       {
         "goodsNo": 2085371,
@@ -59,7 +78,40 @@
         "saleRate": 17,
         "isSoldOut": false,
         "isExclusive": false,
-        "isLike": false
+        "isLike": false,
+        "type": "상의"
+      },
+      {
+        "goodsNo": 2351587,
+        "goodsName": "데님 퍼프 원피스 (MACAOP08M2)",
+        "price": 209000,
+        "brandName": "마리끌레르",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20220210/2351587/2351587_1_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/2351587",
+        "brandLinkUrl": "https://www.musinsa.com/brands/marieclaire",
+        "normalPrice": 279000,
+        "isSale": true,
+        "saleRate": 25,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": false,
+        "type": "원피스"
+      },
+      {
+        "goodsNo": 2351497,
+        "goodsName": "스트라이프 쿼터집업 원피스 (MACAOP20M2)",
+        "price": 111000,
+        "brandName": "마리끌레르",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20220210/2351497/2351497_1_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/2351497",
+        "brandLinkUrl": "https://www.musinsa.com/brands/marieclaire",
+        "normalPrice": 139000,
+        "isSale": true,
+        "saleRate": 20,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": false,
+        "type": "원피스"
       },
       {
         "goodsNo": 1582356,
@@ -74,7 +126,8 @@
         "saleRate": 37,
         "isSoldOut": false,
         "isExclusive": true,
-        "isLike": false
+        "isLike": false,
+        "type": "상의"
       },
       {
         "goodsNo": 1757501,
@@ -89,7 +142,24 @@
         "saleRate": 61,
         "isSoldOut": false,
         "isExclusive": true,
-        "isLike": true
+        "isLike": true,
+        "type": "상의"
+      },
+      {
+        "goodsNo": 1551840,
+        "goodsName": "Deep One Tuck Sweat Pants [Grey]",
+        "price": 39000,
+        "brandName": "제로",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20200818/1551840/1551840_1_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/1551840",
+        "brandLinkUrl": "https://www.musinsa.com/brands/xero",
+        "normalPrice": 39000,
+        "isSale": false,
+        "saleRate": 0,
+        "isSoldOut": false,
+        "isExclusive": true,
+        "isLike": false,
+        "type": "바지"
       },
       {
         "goodsNo": 1742347,
@@ -104,7 +174,8 @@
         "saleRate": 30,
         "isSoldOut": false,
         "isExclusive": true,
-        "isLike": false
+        "isLike": false,
+        "type": "상의"
       },
       {
         "goodsNo": 1679943,
@@ -117,9 +188,26 @@
         "normalPrice": 69000,
         "isSale": true,
         "saleRate": 35,
-        "isSoldOut": false,
+        "isSoldOut": true,
         "isExclusive": false,
-        "isLike": false
+        "isLike": false,
+        "type": "상의"
+      },
+      {
+        "goodsNo": 2064478,
+        "goodsName": "[이동휘 착용] [리뉴얼 ver.][3M 신슐레이트]오리지널 M-1965 피쉬테일 파카_Original Khaki",
+        "price": 138000,
+        "brandName": "라퍼지스토어",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20210813/2064478/2064478_3_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/2064478",
+        "brandLinkUrl": "https://www.musinsa.com/brands/lafudgestore",
+        "normalPrice": 99900,
+        "isSale": true,
+        "saleRate": 28,
+        "isSoldOut": false,
+        "isExclusive": true,
+        "isLike": true,
+        "type": "아우터"
       },
       {
         "goodsNo": 1549281,
@@ -134,7 +222,120 @@
         "saleRate": 0,
         "isSoldOut": true,
         "isExclusive": false,
-        "isLike": true
+        "isLike": true,
+        "type": "상의"
+      },
+      {
+        "goodsNo": 2352951,
+        "goodsName": "버튼 포인티드 드레스 [블랙]",
+        "price": 106200,
+        "brandName": "소프트서울",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20220210/2352951/2352951_1_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/2352951",
+        "brandLinkUrl": "https://www.musinsa.com/brands/softseoul",
+        "normalPrice": 118000,
+        "isSale": true,
+        "saleRate": 10,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": false,
+        "type": "원피스"
+      },
+      {
+        "goodsNo": 1877330,
+        "goodsName": "백 레이서 드레스 - 블랙 / GN2878",
+        "price": 34900,
+        "brandName": "아디다스",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20210402/1877330/1877330_2_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/1877330",
+        "brandLinkUrl": "https://www.musinsa.com/brands/adidas",
+        "normalPrice": 59000,
+        "isSale": true,
+        "saleRate": 41,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": false,
+        "type": "원피스"
+      },
+      {
+        "goodsNo": 1149328,
+        "goodsName": "[베스트아이템] 테이퍼드 히든 밴딩 크롭 슬랙스 [블랙]",
+        "price": 29590,
+        "brandName": "무신사 스탠다드",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20190910/1149328/1149328_10_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/1149328",
+        "brandLinkUrl": "https://www.musinsa.com/brands/musinsastandard",
+        "normalPrice": 32900,
+        "isSale": true,
+        "saleRate": 10,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": false,
+        "type": "바지"
+      },
+      {
+        "goodsNo": 1773288,
+        "goodsName": "[NF] 레이스 다이애그널 스커트 (블랙)_F21QC042",
+        "price": 26000,
+        "brandName": "네스티팬시클럽",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20210202/1773288/1773288_2_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/1773288",
+        "brandLinkUrl": "https://www.musinsa.com/brands/nastyfancyclub",
+        "normalPrice": 52000,
+        "isSale": true,
+        "saleRate": 50,
+        "isSoldOut": false,
+        "isExclusive": true,
+        "isLike": false,
+        "type": "스커트"
+      },
+      {
+        "goodsNo": 810034,
+        "goodsName": "척 70 클래식  블랙 162058C",
+        "price": 85500,
+        "brandName": "컨버스",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20180703/810034/810034_2_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/810034",
+        "brandLinkUrl": "https://www.musinsa.com/brands/converse",
+        "normalPrice": 95000,
+        "isSale": true,
+        "saleRate": 10,
+        "isSoldOut": false,
+        "isExclusive": true,
+        "isLike": false,
+        "type": "스니커즈"
+      },
+      {
+        "goodsNo": 577636,
+        "goodsName": "BW 독일군 스니커즈 - 화이트 / BZ0579",
+        "price": 119900,
+        "brandName": "아디다스",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20170615/577636/577636_4_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/577636",
+        "brandLinkUrl": "https://www.musinsa.com/brands/adidas",
+        "normalPrice": 139000,
+        "isSale": true,
+        "saleRate": 14,
+        "isSoldOut": false,
+        "isExclusive": false,
+        "isLike": false,
+        "type": "스니커즈"
+      },
+      {
+        "goodsNo": 810033,
+        "goodsName": "척 70 클래식 블랙 162050C",
+        "price": 89100,
+        "brandName": "컨버스",
+        "imageUrl": "https://image.msscdn.net/images/goods_img/20180703/810033/810033_2_320.jpg",
+        "linkUrl": "https://m.store.musinsa.com/app/goods/810033",
+        "brandLinkUrl": "https://www.musinsa.com/brands/converse",
+        "normalPrice": 99000,
+        "isSale": true,
+        "saleRate": 10,
+        "isSoldOut": true,
+        "isExclusive": true,
+        "isLike": true,
+        "type": "스니커즈"
       }
     ]
   }

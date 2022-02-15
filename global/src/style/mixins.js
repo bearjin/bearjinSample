@@ -14,9 +14,19 @@ const position = (type, left, top, bottom, right) => css`
   right: ${right};
 `;
 
+const overflowScroll = css`
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 const mixins = {
   flexCenter,
   position,
+  overflowScroll,
 }
 
 export default mixins;
