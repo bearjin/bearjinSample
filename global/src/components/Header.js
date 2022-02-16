@@ -8,7 +8,7 @@ import {
   IcShoppingBag,
 } from './common/icon';
 
-const Header = () => {
+const Header = ({ handleClickPopupOpen }) => {
   const [noticeActive, setNoticeActive] = useState(false);
   const [shoppingCount, setShoppingCount] = useState(0);
 
@@ -23,16 +23,16 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyldHeaderBox>
-        <StyledHeaderNoticeA href="#" isActive={noticeActive} onClick={handleNoticeActive}>
+        <StyledHeaderNoticeA href="#" isActive={noticeActive} onClick={() => handleNoticeActive()}>
           <IcNotice />
         </StyledHeaderNoticeA>
       </StyldHeaderBox>
       <StyledLogoA href="#">로고</StyledLogoA>
       <StyldHeaderBox>
-        <StyledHeaderLinkA href="#">
+        <StyledHeaderLinkA href="#" onClick={() => handleClickPopupOpen()}>
           <IcSearch />
         </StyledHeaderLinkA>
-        <StyledHeaderLinkA href="#" onClick={handleShoppingCount}>
+        <StyledHeaderLinkA href="#" onClick={() => handleShoppingCount()}>
           <IcShoppingBag />
           {shoppingCount > 0 && (
             <StyledHeaderShoppingCountSpan>

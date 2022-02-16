@@ -23,10 +23,21 @@ const overflowScroll = css`
   }
 `;
 
+const fadeInAndOut = css`
+  visibility: hidden;
+  opacity: 0;
+
+  ${({ isActive }) => isActive && css`
+    visibility: visible;
+    opacity: 1;
+  `}
+`;
+
 const mixins = {
   flexCenter,
   position,
   overflowScroll,
+  fadeInAndOut,
 }
 
 export default mixins;
