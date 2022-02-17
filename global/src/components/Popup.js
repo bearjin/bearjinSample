@@ -5,27 +5,32 @@ import { colors } from '../style/variables';
 
 const Popup = ({ isActive, handleClickPopupClose }) => {
   return (
-    <StyledWrap isActive={isActive}>
+    <StyledWrap>
+      <StyledDim isActive={isActive} onClick={() => handleClickPopupClose()} />
       <StyledInner isActive={isActive}>
         <StyledContent>
           팝업 테스트
-          <StyledCloseButton onClick={() => handleClickPopupClose()}>닫기</StyledCloseButton>
         </StyledContent>
+        <StyledCloseButton onClick={() => handleClickPopupClose()}>닫기</StyledCloseButton>
       </StyledInner>
     </StyledWrap>
   );
 };
 
 const StyledWrap = styled.section`
-  ${mixins.fadeInAndOut};
-  ${mixins.position('fixed', 0, 0, 0, 0)};
-
-  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
   z-index: 9999;
 `;
 
+const StyledDim = styled.div`
+  ${mixins.position('fixed', 0, 0, 0, 0)};
+  ${({ isActive }) => isActive ? css`display: block;` : css`display: none;`};
+  
+  background-color: rgba(0, 0, 0, .4);
+`;
+
 const StyledInner = styled.div`
-  ${mixins.position('absolute', 0, null, 0, 'calc(env(safe-area-inset-bottom) + 0px)')};
+  ${mixins.position('fixed', 0, null, 0, 'calc(env(safe-area-inset-bottom) + 0px)')};
 
   padding-bottom: calc(env(safe-area-inset-bottom) + 0px);
   border-radius: 30px 30px 0 0;
@@ -58,10 +63,11 @@ const StyledContent = styled.div`
 `;
 
 const StyledCloseButton = styled.button`
-  padding: 20px;
-  margin-top: 20px;
-  background-color: ${colors.black};
-  color: ${colors.white};
+  ${mixins.position('absolute', 0, 0)};
+
+  width: 100%;
+  height: 30px;
+  font-size: 0;
 `;
 
 

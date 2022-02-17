@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
+    padding: 0;
     border: 0;
     background-color: transparent;
   }

@@ -23,23 +23,23 @@ const Header = ({ handleClickPopupOpen }) => {
   return (
     <StyledHeader>
       <StyldHeaderBox>
-        <StyledHeaderNoticeA href="#" isActive={noticeActive} onClick={() => handleNoticeActive()}>
+        <StyledHeaderNoticeButton type="button" isActive={noticeActive} onClick={() => handleNoticeActive()}>
           <IcNotice />
-        </StyledHeaderNoticeA>
+        </StyledHeaderNoticeButton>
       </StyldHeaderBox>
       <StyledLogoA href="#">로고</StyledLogoA>
       <StyldHeaderBox>
-        <StyledHeaderLinkA href="#" onClick={() => handleClickPopupOpen()}>
+        <StyledHeaderButton type="button" onClick={() => handleClickPopupOpen()}>
           <IcSearch />
-        </StyledHeaderLinkA>
-        <StyledHeaderLinkA href="#" onClick={() => handleShoppingCount()}>
+        </StyledHeaderButton>
+        <StyledHeaderButton type="button" onClick={() => handleShoppingCount()}>
           <IcShoppingBag />
           {shoppingCount > 0 && (
             <StyledHeaderShoppingCountSpan>
               {shoppingCount}
             </StyledHeaderShoppingCountSpan>
           )}
-        </StyledHeaderLinkA>
+        </StyledHeaderButton>
       </StyldHeaderBox>
     </StyledHeader>
   );
@@ -62,7 +62,7 @@ const StyledLogoA = styled.a``;
 
 const StyldHeaderBox = styled.div``;
 
-const StyledHeaderLinkA = styled.a`
+const StyledHeaderButton = styled.button`
   display: inline-flex;
   position: relative;
 
@@ -71,7 +71,7 @@ const StyledHeaderLinkA = styled.a`
   }
 `;
 
-const StyledHeaderNoticeA = styled(StyledHeaderLinkA)`
+const StyledHeaderNoticeButton = styled(StyledHeaderButton)`
   ${({isActive}) => isActive && css`
     &::before {
       ${mixins.position('absolute', null, 0, null, 0)};
