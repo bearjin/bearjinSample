@@ -10,18 +10,15 @@ import SearchBar from './components/SearchBar';
 
 const App = () => {
   const [filterType, setFilterType] = useState('전체');
-  const [count, setCount] = useState(0);
   const [popupActive, setPopupActive] = useState(false);
-  const handleClickType = (type) => setFilterType(type);
-  const handleClickCount = () => setCount(0);
   
   return (
     <>
       <GlobalStyles />
       <Header handleActivePopup={setPopupActive} />
       <SearchBar />
-      <Filter category={'ranking'} handleClickType={handleClickType} handleClickCount={handleClickCount} />
-      <ProductList filterType={filterType} count={count} />
+      <Filter category={'ranking'} handleChangeType={setFilterType} />
+      <ProductList filterType={filterType} />
       <MenubarBottom />
       <Popup isActive={popupActive} handleActivePopup={setPopupActive} />
     </>
