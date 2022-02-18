@@ -1,7 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import mixins from '../style/mixins';
-import { mediaQuery, colors} from '../style/variables';
+import { 
+  mediaQuery, 
+  colors
+} from '../style/variables';
 import Like from './Like';
 import Label from './Label';
 import GoodsData from '../data/goods.json';
@@ -9,7 +12,6 @@ import GoodsData from '../data/goods.json';
 const listData = GoodsData.data.list;
 
 const ProductList = ({ filterType, count }) => {
-  
   return (
     <StyledWrapSection>
       <StyledListUl>
@@ -127,9 +129,8 @@ const StyledProductNumberSpan = styled.span`
 
   width: 30px;
   height: 30px;
+  background-color: ${({index}) => index < 2 ? `${colors.black}` : '#aaa'};
   color: ${colors.white};
-
-  ${({index}) => index < 2 ? css`background-color: ${colors.black}` : css`background-color: #aaa;`}
 `;
 
 const StyledProductLabelWrapDiv = styled.div`
@@ -144,12 +145,11 @@ const StyledNameP = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: ${({strong}) => strong && 'bold;'};
 
   & + & {
     margin-top: 10px;
   }
-
-  ${({strong}) => strong && `font-weight: bold;`}
 `;
 
 const StyledPriceP = styled.p`

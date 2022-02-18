@@ -16,11 +16,13 @@ const StyledProductLabelSpan = styled.span`
   color: ${colors.white};
 
   ${({type}) => {
-    if (type === 'isSale') return css`background-color: #ed0060;`;
-
-    if (type === 'isExclusive') return css`background-color: #18a286;`;
-
-    if (type === 'isSoldOut') return css`background-color: #ccc;`;
+    if (type === 'isSale') {
+      return css`background-color: #ed0060;`;
+    } else if (type === 'isExclusive') {
+      return css`background-color: #18a286;`;
+    } else {
+      return css`background-color: #ccc;`;
+    }
   }}
 `;
 

@@ -7,6 +7,8 @@ import IcMenubarLogo from './IcMenubarLogo';
 import IcMenubarLike from './IcMenubarLike';
 import IcMenubarProfile from './IcMenubarProfile';
 import IcLike from './IcLike';
+import IcClose from './IcClose';
+import IcSearchClose from './IcSearchClose';
 
 export {
   IcNotice,
@@ -18,4 +20,6 @@ export {
   IcMenubarLike,
   IcMenubarProfile,
   IcLike,
+  IcClose,
+  IcSearchClose,
 };

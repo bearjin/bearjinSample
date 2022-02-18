@@ -1,17 +1,17 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import mixins from '../style/mixins';
 import { colors } from '../style/variables';
 
-const Popup = ({ isActive, handleClickPopupClose }) => {
+const Popup = ({ isActive, handleActivePopup }) => {
   return (
     <StyledWrap>
-      <StyledDim isActive={isActive} onClick={() => handleClickPopupClose()} />
+      {isActive && <StyledDim onClick={() => handleActivePopup(false)} />}
       <StyledInner isActive={isActive}>
         <StyledContent>
           팝업 테스트
         </StyledContent>
-        <StyledCloseButton onClick={() => handleClickPopupClose()}>닫기</StyledCloseButton>
+        <StyledCloseButton type="button" onClick={() => handleActivePopup(false)}>닫기</StyledCloseButton>
       </StyledInner>
     </StyledWrap>
   );
@@ -24,7 +24,6 @@ const StyledWrap = styled.section`
 
 const StyledDim = styled.div`
   ${mixins.position('fixed', 0, 0, 0, 0)};
-  ${({ isActive }) => isActive ? css`display: block;` : css`display: none;`};
   
   background-color: rgba(0, 0, 0, .4);
 `;
@@ -36,11 +35,7 @@ const StyledInner = styled.div`
   border-radius: 30px 30px 0 0;
   background-color: ${colors.white};
   transition: transform .25s ease-in-out 0s;
-  transform: translateY(100%);
-
-  ${({ isActive }) => isActive && css`
-    transform: translateY(0);
-  `}
+  transform: ${({ isActive }) => isActive ? 'translateY(0)' : 'translateY(100%)' };
 
   &::before {
     ${mixins.position('absolute', '50%', '15px')};

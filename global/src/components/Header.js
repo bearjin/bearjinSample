@@ -8,33 +8,25 @@ import {
   IcShoppingBag,
 } from './common/icon';
 
-const Header = ({ handleClickPopupOpen }) => {
+const Header = ({ handleActivePopup }) => {
   const [noticeActive, setNoticeActive] = useState(false);
   const [shoppingCount, setShoppingCount] = useState(0);
-
-  const handleNoticeActive = () => {
-    noticeActive ? setNoticeActive(false) : setNoticeActive(true);
-  }
-
-  const handleShoppingCount = () => {
-    shoppingCount < 10 ? setShoppingCount(shoppingCount + 1) : setShoppingCount(0);
-  }
 
   return (
     <StyledHeader>
       <StyldHeaderBox>
-        <StyledHeaderNoticeButton type="button" isActive={noticeActive} onClick={() => handleNoticeActive()}>
+        <StyledHeaderNoticeButton type="button" isActive={noticeActive} onClick={() => setNoticeActive(!noticeActive)}>
           <IcNotice />
         </StyledHeaderNoticeButton>
       </StyldHeaderBox>
       <StyledLogoA href="#">로고</StyledLogoA>
       <StyldHeaderBox>
-        <StyledHeaderButton type="button" onClick={() => handleClickPopupOpen()}>
+        <StyledHeaderButton type="button" onClick={() => handleActivePopup(true)}>
           <IcSearch />
         </StyledHeaderButton>
-        <StyledHeaderButton type="button" onClick={() => handleShoppingCount()}>
+        <StyledHeaderButton type="button" onClick={() => setShoppingCount(prev => prev < 10 ? ++prev : 0)}>
           <IcShoppingBag />
-          {shoppingCount > 0 && (
+          {!!shoppingCount && (
             <StyledHeaderShoppingCountSpan>
               {shoppingCount}
             </StyledHeaderShoppingCountSpan>

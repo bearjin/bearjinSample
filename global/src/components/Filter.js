@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import mixins from '../style/mixins';
 import { colors } from '../style/variables';
 import FilterJson from '../data/categoryFilter.json';
@@ -34,7 +34,7 @@ const StyledFilterWrap = styled.section`
   display: flex;
 
   &::before,
-  ::after {
+  &::after {
     flex: 0 0 15px;
     content: '';
   }
@@ -42,14 +42,9 @@ const StyledFilterWrap = styled.section`
 
 const StyledFilterButton = styled.button`
   padding: 5px 10px;
-  border: 1px solid ${colors.gray500};
+  border: 1px solid ${({ active}) => active ? `${colors.black}` : `${colors.gray500}`};
   border-radius: 4px;
-  color: ${colors.gray500};
-
-  ${({ active }) => active && css`
-    border-color: ${colors.black};
-    color: ${colors.black};
-  `};
+  color: ${({ active }) => active ? `${colors.black}` : `${colors.gray500}`};
 
   & + & {
     margin-left: 10px;

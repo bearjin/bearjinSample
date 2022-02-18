@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     border: 0;
     background-color: transparent;
+    cursor: pointer;
   }
 `;
 
