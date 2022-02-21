@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../style/variables';
 import { 
@@ -8,12 +8,7 @@ import {
 
 const SearchBar = () => {
   const [typing, setTyping] = useState(false);
-  const SearchInput = useRef(null);
-
-  const handleChangeInput = (e) => {
-    const { currentTarget } = e;
-    currentTarget.value ? setTyping(true) : setTyping(false)
-  }
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <StyledWrap>
@@ -21,12 +16,18 @@ const SearchBar = () => {
         <StyledSearchButton type="button">
           <IcSearch />
         </StyledSearchButton>
-        <StyledInput type="text" placeholder={'검색어를 입력해 주세요.'} ref={SearchInput} value="" onChange={(e) => handleChangeInput(e)} />
+        <StyledInput type="text" placeholder={'검색어를 입력해 주세요.'} onChange={(e) => {
+          setInputValue(e.target.value);
+          inputValue === "" ? setTyping(false) : setTyping(true);
+        }} value={inputValue} />
         {typing && (
-          <StyledDeleteButton type="button" onClick={() => {SearchInput.current.value = '';}}>
+          <StyledDeleteButton type="button" onClick={() => {
+            setInputValue("");
+            inputValue === "" ? setTyping(false) : setTyping(true);
+          }}>
             <IcSearchClose />
           </StyledDeleteButton>
-          )}
+        )}
       </StyledSearch>
     </StyledWrap>
   );

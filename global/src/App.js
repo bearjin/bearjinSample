@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { hot } from 'react-hot-loader/root';
 import GlobalStyles from './style/GlobalStyles';
 import Header from './components/Header';
-import ProductList from './components/ProductList';
+import ProductList from './components/productList/ProductList';
 import MenubarBottom from './components/MenubarBottom';
 import Filter from './components/Filter';
 import Popup from './components/Popup';

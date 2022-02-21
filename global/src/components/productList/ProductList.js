@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { mediaQuery } from '../style/variables';
-import GoodsData from '../data/goods.json';
+import { mediaQuery } from '../../style/variables';
+import GoodsData from '../../data/goods.json';
 import ProductListItem from './ProductListItem';
 
 const listData = GoodsData.data.list;
@@ -43,11 +43,11 @@ const StyledWrapSection = styled.section`
 
 const StyledListUl = styled.ul`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 30px;
 
   ${mediaQuery.mediaTablet} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   ${mediaQuery.mediaDesktop} {

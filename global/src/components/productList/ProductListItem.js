@@ -1,11 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import mixins from '../style/mixins';
-import { colors } from '../style/variables';
-import Like from './Like';
-import Label from './Label';
+import mixins from '../../style/mixins';
+import { colors } from '../../style/variables';
+import Like from '../Like';
+import Label from '../Label';
+
+const numberCommas = (number) => {
+  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const ProductListItem = ({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, isExclusive, isSoldOut, saleRate, linkUrl, brandLinkUrl, isLike, type, idx }) => {  
+  const LabelShow = (isSale || isExclusive || isSoldOut);
+
   return (
     <StyledListLi>
       <StyledThumnailDiv>
@@ -16,7 +22,7 @@ const ProductListItem = ({ goodsNo, goodsName, price, brandName, imageUrl, norma
           <StyledProductNumberSpan index={idx}>
             {idx}
           </StyledProductNumberSpan>
-          {(isSale || isExclusive || isSoldOut) && (
+          {LabelShow && (
             <StyledProductLabelWrapDiv>
               {isSale && <Label type={'isSale'} text={'설날 세일'} />}
               {isExclusive && <Label type={'isExclusive'} text={'무신사 단독'} />}
@@ -36,15 +42,13 @@ const ProductListItem = ({ goodsNo, goodsName, price, brandName, imageUrl, norma
           {goodsName}
         </StyledNameP>
         <StyledPriceP>
-          <span>
-            {isSale && <del>{normalPrice}원</del>}
-            {price}원
-          </span>
           {isSale && (
             <StyledSaleRateSpan>
               {saleRate}%
             </StyledSaleRateSpan>
           )}
+          {numberCommas(price)}원
+          {isSale && <del>{numberCommas(normalPrice)}원</del>}
         </StyledPriceP>
       </StyledInformationA>
     </StyledListLi>
@@ -110,9 +114,8 @@ const StyledInformationA = styled.a`
 `;
 
 const StyledNameP = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  ${mixins.textOverflow};
+  
   font-weight: ${({strong}) => strong && 'bold;'};
 
   & + & {
@@ -121,18 +124,20 @@ const StyledNameP = styled.p`
 `;
 
 const StyledPriceP = styled.p`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  position: relative;
+  padding-top: 30px;
 
   del {
-    margin-right: 10px;
+    ${mixins.position('absolute', 0, '10px')};
+
     font-weight: bold;
-    color: ${colors.error};
+    font-size: 12px;
+    color: ${colors.gray300};
   }
 `;
 
 const StyledSaleRateSpan = styled.span`
+  margin-right: 20px;
   font-weight: bold;
   color: ${colors.error};
 `;
