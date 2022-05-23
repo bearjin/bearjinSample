@@ -1,15 +1,13 @@
 {
-  // Setting - live Sass 
+  // Setting - live Sass
   "liveSassCompile.settings.formats": [
     {
-        "format": "compact",
-        "extensionName": ".css",
-        "savePath": null
+      "format": "compact",
+      "extensionName": ".css",
+      "savePath": null
     }
   ],
-  "liveSassCompile.settings.autoprefix": [
-      "> 0.1%",
-      "last 2 versions"
-  ],
+  "liveSassCompile.settings.autoprefix": ["> 0.1%", "last 2 versions"],
   "liveSassCompile.settings.generateMap": false,
+  "liveServer.settings.port": 5501
 }

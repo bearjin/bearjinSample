@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .swiper + .swiper {
+        margin-top: 100px;
+      }
+
+      .swiper-slide {
+        width: 300px;
+        height: 300px;
+        background-color: aqua;
+        font-size: 30px;
+        line-height: 300px;
+        text-align: center;
+      }
+
+      .tab-list {
+        position: relative;
+        font-size: 0;
+      }
+
+      .tab-list:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #ddd;
+        z-index: 1;
+      }
+
+      .tab-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid #fff;
+        border-radius: 4px 4px 0 0;
+        font-size: 14px;
+        color: #000;
+        text-decoration: none;
+      }
+
+      .tab-btn.active {
+        background-color: #000;
+        color: #fff;
+      }
+
+      .tab-content {
+        border: 1px solid #ddd;
+        border-top: none;
+      }
+      .tab-item {
+        display: none;
+        padding: 15px;
+      }
+
+      .tab-item.active {
+        display: block;
+      }
+
+      .tab-item:nth-child(1) .swiper-slide {
+        background-color: blueviolet;
+      }
+      .tab-item:nth-child(2) .swiper-slide {
+        background-color: aqua;
+      }
+      .tab-item:nth-child(3) .swiper-slide {
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab-list">
+      <button type="button" class="tab-btn active">1번째 탭</button>
+      <button type="button" class="tab-btn">2번째 탭</button>
+      <button type="button" class="tab-btn">3번째 탭</button>
+    </div>
+    <ul class="tab-content">
+      <li class="tab-item active">
+        <div class="swiper main_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+        </div>
+        <div class="swiper sub_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+        </div>
+      </li>
+      <li class="tab-item">
+        <div class="swiper main_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+        </div>
+        <div class="swiper sub_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+        </div>
+      </li>
+      <li class="tab-item">
+        <div class="swiper main_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+        </div>
+        <div class="swiper sub_swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+      const mainSwiper = new Swiper(".main_swiper", {
+        loop: true,
+        slidesPerView: "auto",
+        spaceBetween: 20,
+      });
+
+      const subSwiper = new Swiper(".sub_swiper", {
+        loop: true,
+        slidesPerView: "auto",
+        spaceBetween: 20,
+      });
+
+      mainSwiper.forEach((swiper, index) => {
+        swiper.controller.control = subSwiper[index];
+        subSwiper[index].controller.control = swiper;
+      });
+
+      const tabBtn = document.querySelectorAll(".tab-btn");
+      const tabItem = document.querySelectorAll(".tab-item");
+
+      tabBtn.forEach((btn, index) => {
+        btn.addEventListener("click", (e) => {
+          tabBtn.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+          e.currentTarget.classList.add("active");
+
+          tabItem.forEach((item) => {
+            item.classList.remove("active");
+          });
+          tabItem[index].classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
