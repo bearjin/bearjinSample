@@ -105,6 +105,23 @@ const Layer = () => {
 
 export default Layer;
 
+/**
+ *
+ * @param {number} MAX_CONTENT : 컨텐츠 length
+ * @returns nth-child
+ */
+const itemNthChild = (MAX_CONTENT) => {
+  let style = "";
+  for (let i = 0; i < MAX_CONTENT; i++) {
+    style += `
+      &:nth-child(${i + 1}) {
+        z-index: ${MAX_CONTENT - i};
+      }
+    `;
+  }
+  return style;
+};
+
 const StyledLayer = styled.div`
   position: fixed;
   top: 0;
@@ -132,25 +149,7 @@ const StyledLayerContentItem = styled.div`
     transform: translateX(-100%);
   }
 
-  &:nth-child(1) {
-    background-color: wheat;
-    z-index: 5;
-  }
-
-  &:nth-child(2) {
-    background-color: darkblue;
-    z-index: 4;
-  }
-
-  &:nth-child(3) {
-    background-color: darkcyan;
-    z-index: 3;
-  }
-
-  &:nth-child(4) {
-    background-color: palevioletred;
-    z-index: 2;
-  }
+  ${itemNthChild(ContentData.length)}
 
   > img {
     width: 100%;
