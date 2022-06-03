@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const ContentData = [
@@ -30,6 +30,24 @@ const ContentData = [
 
 const Layer = () => {
   const [count, setCount] = useState(0);
+  const [barWidth, setBarWidth] = useState(0);
+
+  useEffect(() => {
+    const barAnimation = setInterval(() => {
+      setBarWidth((prev) => prev + 1);
+    }, (5 * 1000) / 100);
+
+    if (barWidth >= 100 && count < 3) {
+      clearInterval(barAnimation);
+      setCount((prev) => prev + 1);
+      setBarWidth(0);
+    }
+
+    return () => {
+      clearInterval(barAnimation);
+    };
+  }, [barWidth, count]);
+
   return (
     <StyledLayer>
       <StyledLayerContent>
@@ -49,21 +67,28 @@ const Layer = () => {
         })}
       </StyledLayerContent>
       <StyledProgress>
-        <StyledProgressItem>
-          <StyledProgressBar />
-        </StyledProgressItem>
-        <StyledProgressItem>
-          <StyledProgressBar />
-        </StyledProgressItem>
-        <StyledProgressItem>
-          <StyledProgressBar />
-        </StyledProgressItem>
+        {ContentData.map((item, index) => {
+          return index < 3 ? (
+            <StyledProgressItem>
+              <StyledProgressBar
+                style={
+                  count === index
+                    ? { width: barWidth + "%" }
+                    : count > index
+                    ? { width: "100%" }
+                    : null
+                }
+              />
+            </StyledProgressItem>
+          ) : null;
+        })}
       </StyledProgress>
       <StyledNextButton
         onClick={() => {
           count > 2
             ? (window.location.href = "/")
             : setCount((prev) => prev + 1);
+          setBarWidth(0);
         }}
       >
         {count > 2 ? "Shop now" : "NEXT"}
@@ -175,6 +200,7 @@ const StyledProgressBar = styled.span`
   left: 0;
   height: 100%;
   background-color: #fff;
+  transition: width 0.1s linear;
 `;
 
 const StyledNextButton = styled.button`
