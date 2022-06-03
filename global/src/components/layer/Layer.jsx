@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const ContentData = [
@@ -31,16 +31,21 @@ const ContentData = [
 const Layer = () => {
   const [count, setCount] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
+  const SECONDS = 5;
 
   useEffect(() => {
     const barAnimation = setInterval(() => {
       setBarWidth((prev) => prev + 1);
-    }, (5 * 1000) / 100);
+    }, (SECONDS * 1000) / 100);
 
+    // 프로그레스바 width가 100% 되고 마지막스텝이 아닐 경우
     if (barWidth >= 100 && count < 3) {
       clearInterval(barAnimation);
       setCount((prev) => prev + 1);
       setBarWidth(0);
+    } else if (count > 2) {
+      // 마지막 스텝일 경우
+      clearInterval(barAnimation);
     }
 
     return () => {
@@ -68,8 +73,8 @@ const Layer = () => {
       </StyledLayerContent>
       <StyledProgress>
         {ContentData.map((item, index) => {
-          return index < 3 ? (
-            <StyledProgressItem>
+          return index < ContentData.length - 1 ? (
+            <StyledProgressItem key={item.title + index}>
               <StyledProgressBar
                 style={
                   count === index
