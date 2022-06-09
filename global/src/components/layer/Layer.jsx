@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const ContentData = [
@@ -76,13 +76,7 @@ const Layer = () => {
           return index < ContentData.length - 1 ? (
             <StyledProgressItem key={item.title + index}>
               <StyledProgressBar
-                style={
-                  count === index
-                    ? { width: barWidth + "%" }
-                    : count > index
-                    ? { width: "100%" }
-                    : null
-                }
+                barWidth={count === index ? barWidth : count > index ? 100 : 0}
               />
             </StyledProgressItem>
           ) : null;
@@ -202,6 +196,7 @@ const StyledProgressBar = styled.span`
   position: absolute;
   top: 0;
   left: 0;
+  width: ${({ barWidth }) => barWidth + "%"};
   height: 100%;
   background-color: #fff;
   transition: width 0.1s linear;
