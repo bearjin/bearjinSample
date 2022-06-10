@@ -43,6 +43,43 @@
       .box-item:nth-child(4) {
         background-color: blue;
       }
+
+      .box2 {
+        display: grid;
+        grid-template-areas:
+          "a a b"
+          "d c b";
+        grid-auto-rows: 100px;
+        gap: 10px;
+        margin-top: 100px;
+      }
+
+      .box2-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .box2-item:nth-child(1) {
+        grid-area: a;
+        background-color: red;
+      }
+
+      .box2-item:nth-child(2) {
+        grid-area: b;
+        background-color: green;
+      }
+
+      .box2-item:nth-child(3) {
+        grid-area: c;
+        order: 4;
+        background-color: yellow;
+      }
+
+      .box2-item:nth-child(4) {
+        grid-area: d;
+        background-color: blue;
+      }
     </style>
   </head>
   <body>
@@ -51,6 +88,12 @@
       <div class="box-item">2</div>
       <div class="box-item">3</div>
       <div class="box-item">4</div>
+    </div>
+    <div class="box2">
+      <div class="box2-item">1</div>
+      <div class="box2-item">2</div>
+      <div class="box2-item">3</div>
+      <div class="box2-item">4</div>
     </div>
   </body>
 </html>
