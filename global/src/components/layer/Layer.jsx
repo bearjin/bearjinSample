@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const ContentData = [
+const introLayerData = [
   {
-    title: "Title1",
-    subTitle: "SubTitle1",
+    title: "Seoul",
+    text: `Just like the dynamic city of Seoul,
+carious fashion styles and
+philosophies coexist whithin the
+grounds of MUSINSA, where unique
+fashion traits can be evcavated in
+real-time`,
     imageUrl:
       "https://cdn.pixabay.com/photo/2012/12/22/23/40/patagonia-71911_1280.jpg",
   },
   {
-    title: "Title2",
-    subTitle: "SubTitle2",
+    title: "Diversity",
+    text: `Embrace the spirit of Seoul’s fashion leaders,
+who believes ‘Diversity’ is
+the source of inspiration that paves
+the road for infinite possibilities.`,
     imageUrl:
       "https://cdn.pixabay.com/photo/2017/10/22/09/58/lion-2877304_1280.jpg",
   },
   {
-    title: "Title3",
-    subTitle: "SubTitle3",
+    title: "Musinsa",
+    text: `Wear the vibes of K-fashion that’s
+only found at MUSINSA, anywhere and
+everywhere around the world.`,
     imageUrl:
       "https://cdn.pixabay.com/photo/2016/04/20/23/11/great-britain-1342316_1280.jpg",
   },
   {
-    title: "Title4",
-    subTitle: "SubTitle4",
+    title: "Musinsa",
     imageUrl:
       "https://cdn.pixabay.com/photo/2019/09/18/17/06/thailand-4487239_1280.jpg",
   },
 ];
 
-const Layer = () => {
+const IntroLayer = () => {
   const [count, setCount] = useState(0);
   const [barWidth, setBarWidth] = useState(0);
   const SECONDS = 5;
@@ -56,53 +65,70 @@ const Layer = () => {
   return (
     <StyledLayer>
       <StyledLayerContent>
-        {ContentData.map(({ title, subTitle, imageUrl }, index) => {
-          return (
+        {introLayerData.map(({ title, text, imageUrl }, index) => {
+          return index === 3 ? (
             <StyledLayerContentItem
               key={title + index}
               className={`${count > index ? "active" : ""}`}
             >
-              <StyledTitleWrap>
-                <StyledTitle>{title}</StyledTitle>
-                <StyledSubTitle>{subTitle}</StyledSubTitle>
-              </StyledTitleWrap>
+              <StyledInformation position={"center"}>
+                <StyledSubTitle>WEAR THE [{title}]</StyledSubTitle>
+                <StyledTitle>MUSINSA</StyledTitle>
+              </StyledInformation>
+              <img src={imageUrl} alt="이미지" />
+            </StyledLayerContentItem>
+          ) : (
+            <StyledLayerContentItem
+              key={title + index}
+              className={`${count > index ? "active" : ""}`}
+            >
+              <StyledInformation>
+                <StyledTitleWrap>
+                  <StyledTitle>Wear the</StyledTitle>
+                  <StyledTitle>[{title}]</StyledTitle>
+                </StyledTitleWrap>
+                <StyledText>{text}</StyledText>
+              </StyledInformation>
               <img src={imageUrl} alt="이미지" />
             </StyledLayerContentItem>
           );
         })}
       </StyledLayerContent>
-      <StyledProgress>
-        {ContentData.map((item, index) => {
-          return index < ContentData.length - 1 ? (
-            <StyledProgressItem key={item.title + index}>
-              <StyledProgressBar
-                barWidth={count === index ? barWidth : count > index ? 100 : 0}
-              />
+      <StyledProgress isActive={count !== 3}>
+        {introLayerData.map((item, index) => {
+          return (
+            <StyledProgressItem
+              key={item.title + index}
+              isActive={count === index}
+            >
+              <StyledProgressBar barWidth={count === index ? barWidth : 0} />
             </StyledProgressItem>
-          ) : null;
+          );
         })}
       </StyledProgress>
       <StyledNextButton
         onClick={() => {
-          count > 2
-            ? (window.location.href = "/")
-            : setCount((prev) => prev + 1);
+          setCount((prev) => prev + 1);
           setBarWidth(0);
         }}
+        isActive={count !== 3}
       >
-        {count > 2 ? "Shop now" : "NEXT"}
+        Next
         <StyledNextButtonBar />
       </StyledNextButton>
+      <StyledShopNowLink href="/" isActive={count === 3}>
+        Shop Now
+      </StyledShopNowLink>
     </StyledLayer>
   );
 };
 
-export default Layer;
+export default IntroLayer;
 
 /**
- *
+ * 이미지 nth-child 별로 z-index 값 추가
  * @param {number} MAX_CONTENT : 컨텐츠 length
- * @returns nth-child
+ * @returns style
  */
 const itemNthChild = (MAX_CONTENT) => {
   let style = "";
@@ -122,10 +148,11 @@ const StyledLayer = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 100;
+  z-index: 110;
 `;
 
 const StyledLayerContent = styled.div`
+  overflow: hidden;
   position: relative;
   width: 100%;
   height: 100%;
@@ -143,7 +170,7 @@ const StyledLayerContentItem = styled.div`
     transform: translateX(-100%);
   }
 
-  ${itemNthChild(ContentData.length)}
+  ${itemNthChild(introLayerData.length)}
 
   > img {
     width: 100%;
@@ -152,29 +179,49 @@ const StyledLayerContentItem = styled.div`
   }
 `;
 
-const StyledTitleWrap = styled.div`
-  position: absolute;
-  top: 100px;
-  left: 50px;
+const StyledInformation = styled.div`
+  ${({ position }) =>
+    position === "center"
+      ? css`
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        `
+      : css`
+          position: absolute;
+          top: 100px;
+          left: 50px;
+        `}
 `;
 
+const StyledTitleWrap = styled.div``;
+
 const StyledTitle = styled.p`
-  font-weight: bold;
+  font-weight: 700;
   font-size: 50px;
   color: #fff;
+  line-height: 65px;
 `;
 
 const StyledSubTitle = styled.p`
-  margin-top: 20px;
-  font-size: 30px;
+  margin-bottom: 4px;
+  font-size: 18px;
   color: #fff;
 `;
 
+const StyledText = styled.p`
+  margin-top: 20px;
+  font-size: 16px;
+  color: #fff;
+  white-space: pre-wrap;
+`;
+
 const StyledProgress = styled.ul`
-  display: flex;
+  display: ${({ isActive }) => (isActive ? "flex" : "none")};
   position: absolute;
-  bottom: 50px;
-  left: 0;
+  bottom: 54px;
+  left: 20px;
   z-index: 10;
   width: 100%;
   padding: 0 20px;
@@ -182,13 +229,16 @@ const StyledProgress = styled.ul`
 `;
 
 const StyledProgressItem = styled.li`
+  overflow: hidden;
   position: relative;
-  flex: 1;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
+  width: ${({ isActive }) => (isActive ? "32px" : "6px")};
+  height: 6px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: width 0.2s linear;
 
   & + & {
-    margin-left: 10px;
+    margin-left: 12px;
   }
 `;
 
@@ -199,24 +249,56 @@ const StyledProgressBar = styled.span`
   width: ${({ barWidth }) => barWidth + "%"};
   height: 100%;
   background-color: #fff;
-  transition: width 0.1s linear;
+  transition: width 0.3s linear;
 `;
 
 const StyledNextButton = styled.button`
+  display: ${({ isActive }) => (isActive ? "block" : "none")};
   position: absolute;
-  right: 30px;
-  bottom: 100px;
+  right: 21px;
+  bottom: 57px;
   z-index: 10;
-  font-weight: bold;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 16px;
   color: #fff;
-  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  line-height: 1;
 `;
 
 const StyledNextButtonBar = styled.span`
   display: block;
-  width: 100px;
-  height: 3px;
-  margin-top: 10px;
+  position: relative;
+  width: 56px;
+  height: 2px;
+  margin-top: 7px;
+  border-radius: 0 2px 2px 0;
   background-color: #fff;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 10px;
+    height: 2px;
+    background-color: #fff;
+    transform: rotate(45deg);
+  }
+`;
+
+const StyledShopNowLink = styled.a`
+  display: ${({ isActive }) => (isActive ? "flex" : "none")};
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 54px;
+  left: 20px;
+  z-index: 10;
+  width: calc(100% - 40px);
+  height: 48px;
+  border: 1px solid #c1c4c9;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
 `;
