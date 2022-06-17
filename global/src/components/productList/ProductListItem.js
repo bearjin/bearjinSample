@@ -1,32 +1,48 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import mixins from '../../style/mixins';
-import { colors } from '../../style/variables';
-import Like from '../Like';
-import Label from '../Label';
+import React from "react";
+import styled, { css } from "styled-components";
+import mixins from "../../style/mixins";
+import { colors } from "../../style/variables";
+import Like from "../Like";
+import Label from "../Label";
 
 const numberCommas = (number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
-const ProductListItem = ({ goodsNo, goodsName, price, brandName, imageUrl, normalPrice, isSale, isExclusive, isSoldOut, saleRate, linkUrl, brandLinkUrl, isLike, type, idx }) => {  
-  const LabelShow = (isSale || isExclusive || isSoldOut);
+const ProductListItem = ({
+  goodsNo,
+  goodsName,
+  price,
+  brandName,
+  imageUrl,
+  normalPrice,
+  isSale,
+  isExclusive,
+  isSoldOut,
+  saleRate,
+  linkUrl,
+  brandLinkUrl,
+  isLike,
+  type,
+  idx,
+}) => {
+  const LabelShow = isSale || isExclusive || isSoldOut;
 
   return (
     <StyledListLi>
       <StyledThumnailDiv>
-        <StyledImageLinkA href={linkUrl} >
+        <StyledImageLinkA href={linkUrl}>
           <StyledImageBoxDiv isSoldOut={isSoldOut}>
             <img src={imageUrl} alt={goodsName} />
           </StyledImageBoxDiv>
-          <StyledProductNumberSpan index={idx}>
-            {idx}
-          </StyledProductNumberSpan>
+          <StyledProductNumberSpan index={idx}>{idx}</StyledProductNumberSpan>
           {LabelShow && (
             <StyledProductLabelWrapDiv>
-              {isSale && <Label type={'isSale'} text={'설날 세일'} />}
-              {isExclusive && <Label type={'isExclusive'} text={'무신사 단독'} />}
-              {isSoldOut && <Label type={'isSoldOut'} text={'SOLD OUT'} />}
+              {isSale && <Label type={"isSale"} text={"설날 세일"} />}
+              {isExclusive && (
+                <Label type={"isExclusive"} text={"무신사 단독"} />
+              )}
+              {isSoldOut && <Label type={"isSoldOut"} text={"SOLD OUT"} />}
             </StyledProductLabelWrapDiv>
           )}
         </StyledImageLinkA>
@@ -35,18 +51,10 @@ const ProductListItem = ({ goodsNo, goodsName, price, brandName, imageUrl, norma
         </StyledLikeDiv>
       </StyledThumnailDiv>
       <StyledInformationA href={brandLinkUrl}>
-        <StyledNameP>
-          {brandName}
-        </StyledNameP>
-        <StyledNameP strong>
-          {goodsName}
-        </StyledNameP>
+        <StyledNameP>{brandName}</StyledNameP>
+        <StyledNameP strong>{goodsName}</StyledNameP>
         <StyledPriceP>
-          {isSale && (
-            <StyledSaleRateSpan>
-              {saleRate}%
-            </StyledSaleRateSpan>
-          )}
+          {isSale && <StyledSaleRateSpan>{saleRate}%</StyledSaleRateSpan>}
           {numberCommas(price)}원
           {isSale && <del>{numberCommas(normalPrice)}원</del>}
         </StyledPriceP>
@@ -68,45 +76,47 @@ const StyledThumnailDiv = styled.div`
 `;
 
 const StyledImageLinkA = styled.a`
-  ${mixins.position('absolute', 0, 0)};
-  
+  ${mixins.position("absolute", 0, 0)};
+
   width: 100%;
-  height: 100%;  
+  height: 100%;
 `;
 
-const StyledImageBoxDiv = styled.div`  
+const StyledImageBoxDiv = styled.div`
   width: 100%;
   height: 100%;
 
   img {
-    ${mixins.position('absolute', '50%', '50%')};
+    ${mixins.position("absolute", "50%", "50%")};
 
     width: 100%;
     transform: translate(-50%, -50%);
   }
 
-  ${({isSoldOut}) => isSoldOut && css`
-    &::after {
-      ${mixins.position('absolute', 0, 0, 0, 0)};
+  ${({ isSoldOut }) =>
+    isSoldOut &&
+    css`
+      &::after {
+        ${mixins.position("absolute", 0, 0, 0, 0)};
 
-      background-color: rgba(255, 255, 255, .8);
-      content: '';
-    }
-  `}
+        background-color: rgba(255, 255, 255, 0.8);
+        content: "";
+      }
+    `}
 `;
 
 const StyledProductNumberSpan = styled.span`
   ${mixins.flexCenter};
-  ${mixins.position('absolute', 0, 0)};
+  ${mixins.position("absolute", 0, 0)};
 
   width: 30px;
   height: 30px;
-  background-color: ${({index}) => index <= 2 ? `${colors.black}` : '#aaa'};
+  background-color: ${({ index }) => (index <= 2 ? `${colors.black}` : "#aaa")};
   color: ${colors.white};
 `;
 
 const StyledProductLabelWrapDiv = styled.div`
-  ${mixins.position('absolute', 0, null, 0, null)};
+  ${mixins.position("absolute", 0, null, 0, null)};
 `;
 
 const StyledInformationA = styled.a`
@@ -115,8 +125,8 @@ const StyledInformationA = styled.a`
 
 const StyledNameP = styled.p`
   ${mixins.textOverflow};
-  
-  font-weight: ${({strong}) => strong && 'bold;'};
+
+  font-weight: ${({ strong }) => strong && "bold;"};
 
   & + & {
     margin-top: 10px;
@@ -128,7 +138,7 @@ const StyledPriceP = styled.p`
   padding-top: 30px;
 
   del {
-    ${mixins.position('absolute', 0, '10px')};
+    ${mixins.position("absolute", 0, "10px")};
 
     font-weight: bold;
     font-size: 12px;
@@ -143,7 +153,7 @@ const StyledSaleRateSpan = styled.span`
 `;
 
 const StyledLikeDiv = styled.div`
-  ${mixins.position('absolute', null, null, '15px', '15px')};
+  ${mixins.position("absolute", null, null, "15px", "15px")};
 `;
 
 export default ProductListItem;

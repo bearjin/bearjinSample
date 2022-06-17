@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import mixins from '../style/mixins';
-import { colors } from '../style/variables';
-import { 
-  IcMenubarSearch, 
+import React from "react";
+import styled from "styled-components";
+import mixins from "../style/mixins";
+import { colors } from "../style/variables";
+import {
+  IcMenubarSearch,
   IcMenubarBrand,
-  IcMenubarLogo, 
-  IcMenubarLike, 
+  IcMenubarLogo,
+  IcMenubarLike,
   IcMenubarProfile,
-} from './common/icon';
+} from "./common/icon";
 
 const MenubarBottom = () => {
   return (
@@ -46,7 +46,7 @@ const StyledMenuNavWrap = styled.div`
 `;
 
 const StyledMenuNav = styled.nav`
-  ${mixins.position('fixed', 0, null, 0, null)};
+  ${mixins.position("fixed", 0, null, 0, null)};
 
   display: flex;
   align-items: center;
@@ -69,7 +69,7 @@ const StyledMenuLinkA = styled.a`
   color: ${colors.white};
 `;
 
-const StyledProfileIconSpan =  styled.span`
+const StyledProfileIconSpan = styled.span`
   ${mixins.flexCenter};
 
   width: 24px;

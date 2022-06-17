@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import React, { useState, useEffect, useRef } from "react";
+import styled, { css, keyframes } from "styled-components";
+import { desktop, colors } from "../../style/variables";
 
 const introLayerData = [
   {
-    title: "Seoul",
     text: `Just like the dynamic city of Seoul,
 carious fashion styles and
 philosophies coexist whithin the
@@ -14,7 +14,6 @@ real-time`,
       "https://cdn.pixabay.com/photo/2012/12/22/23/40/patagonia-71911_1280.jpg",
   },
   {
-    title: "Diversity",
     text: `Embrace the spirit of Seoul’s fashion leaders,
 who believes ‘Diversity’ is
 the source of inspiration that paves
@@ -23,7 +22,6 @@ the road for infinite possibilities.`,
       "https://cdn.pixabay.com/photo/2017/10/22/09/58/lion-2877304_1280.jpg",
   },
   {
-    title: "Musinsa",
     text: `Wear the vibes of K-fashion that’s
 only found at MUSINSA, anywhere and
 everywhere around the world.`,
@@ -31,94 +29,120 @@ everywhere around the world.`,
       "https://cdn.pixabay.com/photo/2016/04/20/23/11/great-britain-1342316_1280.jpg",
   },
   {
-    title: "Musinsa",
     imageUrl:
       "https://cdn.pixabay.com/photo/2019/09/18/17/06/thailand-4487239_1280.jpg",
   },
 ];
 
-const IntroLayer = () => {
-  const [count, setCount] = useState(0);
-  const [barWidth, setBarWidth] = useState(0);
+const IntroLayer = ({ isLayerHidden, handleLayerHidden }) => {
   const SECONDS = 5;
+  const MAX_CONTENT = introLayerData.length - 1;
+  const [count, setCount] = useState(0);
+  const barWidth = useRef(0);
+  const progressBarRef = useRef([]);
 
   useEffect(() => {
     const barAnimation = setInterval(() => {
-      setBarWidth((prev) => prev + 1);
-    }, (SECONDS * 1000) / 100);
+      if (progressBarRef.current) {
+        barWidth.current += 1;
+        progressBarRef.current[count].style.width = barWidth.current + "%";
 
-    // 프로그레스바 width가 100% 되고 마지막스텝이 아닐 경우
-    if (barWidth >= 100 && count < 3) {
-      clearInterval(barAnimation);
-      setCount((prev) => prev + 1);
-      setBarWidth(0);
-    } else if (count > 2) {
-      // 마지막 스텝일 경우
-      clearInterval(barAnimation);
-    }
+        //프로그레스바 width가 100% 되고 마지막스텝이 아닐 경우
+        if (barWidth.current >= 100 && count < MAX_CONTENT) {
+          clearInterval(barAnimation);
+          barWidth.current = 0;
+          setCount((prev) => prev + 1);
+        } else if (count === MAX_CONTENT) {
+          // 마지막 스텝일 경우
+          clearInterval(barAnimation);
+        }
+      }
+    }, ((count === 2 ? SECONDS + 1 : SECONDS) * 1000) / 100); // 3번 슬라이드는 자동롤링 6초
 
     return () => {
       clearInterval(barAnimation);
     };
-  }, [barWidth, count]);
+  }, [count, MAX_CONTENT]);
 
   return (
-    <StyledLayer>
+    <StyledLayer isLayerHidden={isLayerHidden}>
       <StyledLayerContent>
-        {introLayerData.map(({ title, text, imageUrl }, index) => {
-          return index === 3 ? (
-            <StyledLayerContentItem
-              key={title + index}
-              className={`${count > index ? "active" : ""}`}
-            >
-              <StyledInformation position={"center"}>
-                <StyledSubTitle>WEAR THE [{title}]</StyledSubTitle>
-                <StyledTitle>MUSINSA</StyledTitle>
-              </StyledInformation>
-              <img src={imageUrl} alt="이미지" />
-            </StyledLayerContentItem>
-          ) : (
-            <StyledLayerContentItem
-              key={title + index}
-              className={`${count > index ? "active" : ""}`}
-            >
-              <StyledInformation>
-                <StyledTitleWrap>
-                  <StyledTitle>Wear the</StyledTitle>
-                  <StyledTitle>[{title}]</StyledTitle>
-                </StyledTitleWrap>
-                <StyledText>{text}</StyledText>
-              </StyledInformation>
-              <img src={imageUrl} alt="이미지" />
-            </StyledLayerContentItem>
-          );
-        })}
+        <StyledTitleWrap isActive={count === MAX_CONTENT}>
+          <StyledTitleBox>
+            <StyledTitle>WEAR THE</StyledTitle>
+            <StyledTitle>[Seoul]</StyledTitle>
+          </StyledTitleBox>
+        </StyledTitleWrap>
+        <StyledInformation>
+          {introLayerData.map(({ text }, index) => {
+            return (
+              <StyledInformationItem
+                key={index}
+                isPrev={count > index}
+                isActive={count === index}
+              >
+                {index === MAX_CONTENT ? (
+                  <StyledInformationBox position={"center"}>
+                    <StyledSubTitle>
+                      WEAR THE <StyledBraket />
+                    </StyledSubTitle>
+                    <StyledTitle>MUSINSA</StyledTitle>
+                  </StyledInformationBox>
+                ) : (
+                  <StyledInformationBox>
+                    <StyledText>{text}</StyledText>
+                  </StyledInformationBox>
+                )}
+              </StyledInformationItem>
+            );
+          })}
+        </StyledInformation>
+        <StyledImageList>
+          {introLayerData.map(({ imageUrl }, index) => {
+            return (
+              <StyledImageItem
+                key={index}
+                isPrev={count > index}
+                isNext={count + 1 === index}
+                isActive={count === index}
+              >
+                <StyledImageBox isScale={count >= index}>
+                  <img src={imageUrl} alt="intro layer image" />
+                </StyledImageBox>
+              </StyledImageItem>
+            );
+          })}
+        </StyledImageList>
       </StyledLayerContent>
-      <StyledProgress isActive={count !== 3}>
-        {introLayerData.map((item, index) => {
-          return (
-            <StyledProgressItem
-              key={item.title + index}
-              isActive={count === index}
-            >
-              <StyledProgressBar barWidth={count === index ? barWidth : 0} />
-            </StyledProgressItem>
-          );
-        })}
-      </StyledProgress>
-      <StyledNextButton
-        onClick={() => {
-          setCount((prev) => prev + 1);
-          setBarWidth(0);
-        }}
-        isActive={count !== 3}
-      >
-        Next
-        <StyledNextButtonBar />
-      </StyledNextButton>
-      <StyledShopNowLink href="/" isActive={count === 3}>
-        Shop Now
-      </StyledShopNowLink>
+      <StyledBottomWrap isActive={count === MAX_CONTENT}>
+        <StyledProgress>
+          {introLayerData.map((item, index) => {
+            return (
+              <StyledProgressItem key={index} isActive={count === index}>
+                <StyledProgressBar
+                  ref={(el) => {
+                    if (el !== null) progressBarRef.current[index] = el;
+                  }}
+                />
+              </StyledProgressItem>
+            );
+          })}
+        </StyledProgress>
+        <StyledNextButton
+          onClick={() => {
+            setCount((prev) => prev + 1);
+            barWidth.current = 0;
+          }}
+        >
+          Next
+          <StyledNextButtonBar />
+        </StyledNextButton>
+      </StyledBottomWrap>
+      <StyledShopNow isActive={count === MAX_CONTENT}>
+        <StyledShopNowButton onClick={() => handleLayerHidden(true)}>
+          Shop Now
+        </StyledShopNowButton>
+      </StyledShopNow>
     </StyledLayer>
   );
 };
@@ -143,12 +167,22 @@ const itemNthChild = (MAX_CONTENT) => {
 };
 
 const StyledLayer = styled.div`
+  overflow: hidden;
+  display: ${({ isLayerHidden }) => (isLayerHidden ? "none" : "block")};
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 110;
+
+  ${desktop} {
+    top: 148px;
+    left: 50%;
+    width: 480px;
+    height: 600px;
+    margin-left: -240px;
+  }
 `;
 
 const StyledLayerContent = styled.div`
@@ -158,28 +192,48 @@ const StyledLayerContent = styled.div`
   height: 100%;
 `;
 
-const StyledLayerContentItem = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.35s ease-in-out;
-
-  &.active {
-    transform: translateX(-100%);
+const scaleAnimation = keyframes`
+  0% {
+    transform: scale(1);
   }
 
-  ${itemNthChild(introLayerData.length)}
-
-  > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  100% {
+    transform: scale(1.07);
   }
 `;
 
-const StyledInformation = styled.div`
+const StyledInformation = styled.ul`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+`;
+
+const StyledInformationItem = styled.li`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(100%);
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      transform: translateX(0);
+    `}
+
+  ${({ isPrev }) =>
+    isPrev &&
+    css`
+      transform: translateX(-100%);
+    `}
+`;
+
+const StyledInformationBox = styled.div`
   ${({ position }) =>
     position === "center"
       ? css`
@@ -190,42 +244,187 @@ const StyledInformation = styled.div`
         `
       : css`
           position: absolute;
-          top: 100px;
-          left: 50px;
+          top: 356px;
+          left: 20px;
         `}
+
+  ${desktop} {
+    ${({ position }) =>
+      position === "center"
+        ? css`
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          `
+        : css`
+            position: absolute;
+            top: 263px;
+            left: 73px;
+          `}
+  }
 `;
 
-const StyledTitleWrap = styled.div``;
+const StyledTitleWrap = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      transform: translateX(-100%);
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    `}
+`;
+
+const StyledTitleBox = styled.div`
+  position: absolute;
+  top: 194px;
+  left: 20px;
+
+  ${desktop} {
+    top: 113px;
+    left: 79px;
+  }
+`;
 
 const StyledTitle = styled.p`
   font-weight: 700;
   font-size: 50px;
-  color: #fff;
+  color: ${colors.white};
   line-height: 65px;
 `;
 
 const StyledSubTitle = styled.p`
+  display: flex;
   margin-bottom: 4px;
   font-size: 18px;
-  color: #fff;
+  color: ${colors.white};
 `;
 
 const StyledText = styled.p`
-  margin-top: 20px;
   font-size: 16px;
-  color: #fff;
+  color: ${colors.white};
   white-space: pre-wrap;
 `;
 
-const StyledProgress = styled.ul`
-  display: ${({ isActive }) => (isActive ? "flex" : "none")};
+const StyledBraket = styled.span`
+  position: relative;
+  display: block;
+  width: 120px;
+  margin-left: 4px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+  }
+
+  &::before {
+    content: "[";
+    left: 0;
+  }
+
+  &::after {
+    content: "]";
+    right: 0;
+  }
+`;
+
+const StyledImageList = styled.ul`
   position: absolute;
-  bottom: 54px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+`;
+
+const StyledImageItem = styled.li`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: clip-path 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${itemNthChild(introLayerData.length)}
+
+  ${({ isPrev }) =>
+    isPrev &&
+    css`
+      clip-path: inset(0 100% 0 0);
+    `}
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      clip-path: inset(0 0 0 0);
+    `}
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+
+    ${({ isPrev }) =>
+      isPrev &&
+      css`
+        transform: translateX(-30%);
+      `}
+
+    ${({ isNext }) =>
+      isNext &&
+      css`
+        transform: translateX(30%);
+      `}
+  }
+`;
+
+const StyledImageBox = styled.div`
+  width: 100%;
+  height: 100%;
+
+  ${({ isScale }) =>
+    isScale &&
+    css`
+      animation: ${scaleAnimation} 5.65s linear forwards;
+    `}
+`;
+
+const StyledBottomWrap = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      transform: translateX(-100%);
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    `}
+`;
+
+const StyledProgress = styled.ul`
+  display: flex;
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 54px);
   left: 20px;
   z-index: 10;
   width: 100%;
-  padding: 0 20px;
   box-sizing: border-box;
+
+  ${desktop} {
+    left: 73px;
+    bottom: calc(env(safe-area-inset-bottom) + 57px);
+  }
 `;
 
 const StyledProgressItem = styled.li`
@@ -246,23 +445,27 @@ const StyledProgressBar = styled.span`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ barWidth }) => barWidth + "%"};
   height: 100%;
-  background-color: #fff;
+  border-radius: 10px;
+  background-color: ${colors.white};
   transition: width 0.3s linear;
 `;
 
 const StyledNextButton = styled.button`
-  display: ${({ isActive }) => (isActive ? "block" : "none")};
   position: absolute;
   right: 21px;
-  bottom: 57px;
+  bottom: calc(env(safe-area-inset-bottom) + 57px);
   z-index: 10;
   font-weight: 700;
   font-size: 16px;
-  color: #fff;
+  color: ${colors.white};
   text-align: left;
   line-height: 1;
+
+  ${desktop} {
+    right: 72px;
+    bottom: calc(env(safe-area-inset-bottom) + 60px);
+  }
 `;
 
 const StyledNextButtonBar = styled.span`
@@ -272,7 +475,7 @@ const StyledNextButtonBar = styled.span`
   height: 2px;
   margin-top: 7px;
   border-radius: 0 2px 2px 0;
-  background-color: #fff;
+  background-color: ${colors.white};
 
   &::after {
     content: "";
@@ -281,24 +484,40 @@ const StyledNextButtonBar = styled.span`
     right: 0;
     width: 10px;
     height: 2px;
-    background-color: #fff;
+    background-color: ${colors.white};
     transform: rotate(45deg);
   }
 `;
 
-const StyledShopNowLink = styled.a`
-  display: ${({ isActive }) => (isActive ? "flex" : "none")};
+const StyledShopNow = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  transform: translateX(100%);
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      transform: translateX(0);
+    `}
+`;
+
+const StyledShopNowButton = styled.button`
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 54px;
+  bottom: calc(env(safe-area-inset-bottom) + 54px);
   left: 20px;
-  z-index: 10;
   width: calc(100% - 40px);
   height: 48px;
-  border: 1px solid #c1c4c9;
+  border: 1px solid ${colors.gray300};
   border-radius: 6px;
   font-weight: 600;
   font-size: 16px;
-  color: #fff;
+  color: ${colors.white};
 `;

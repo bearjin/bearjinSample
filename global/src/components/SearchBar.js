@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { colors } from '../style/variables';
-import { 
-  IcSearch, 
-  IcSearchClose 
-} from './common/icon';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { colors } from "../style/variables";
+import { IcSearch, IcSearchClose } from "./common/icon";
 
 const SearchBar = () => {
   const [typing, setTyping] = useState(false);
@@ -16,15 +13,23 @@ const SearchBar = () => {
         <StyledSearchButton type="button">
           <IcSearch />
         </StyledSearchButton>
-        <StyledInput type="text" placeholder={'검색어를 입력해 주세요.'} onChange={(e) => {
-          setInputValue(e.target.value);
-          inputValue === "" ? setTyping(false) : setTyping(true);
-        }} value={inputValue} />
-        {typing && (
-          <StyledDeleteButton type="button" onClick={() => {
-            setInputValue("");
+        <StyledInput
+          type="text"
+          placeholder={"검색어를 입력해 주세요."}
+          onChange={(e) => {
+            setInputValue(e.target.value);
             inputValue === "" ? setTyping(false) : setTyping(true);
-          }}>
+          }}
+          value={inputValue}
+        />
+        {typing && (
+          <StyledDeleteButton
+            type="button"
+            onClick={() => {
+              setInputValue("");
+              inputValue === "" ? setTyping(false) : setTyping(true);
+            }}
+          >
             <IcSearchClose />
           </StyledDeleteButton>
         )}
@@ -66,6 +71,5 @@ const StyledInput = styled.input`
   border: 0;
   background-color: transparent;
 `;
-
 
 export default SearchBar;

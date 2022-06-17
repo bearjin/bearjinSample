@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Lnb = () => {
-  return (
-    <div className='lnb'></div>
-  );
+  return <div className="lnb"></div>;
 };
 
 export default Lnb;

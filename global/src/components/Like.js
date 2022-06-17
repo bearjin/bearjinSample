@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import mixins from '../style/mixins';
-import { colors } from '../style/variables';
-import { IcLike } from './common/icon';
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import mixins from "../style/mixins";
+import { colors } from "../style/variables";
+import { IcLike } from "./common/icon";
 
 const Like = ({ isLike }) => {
   const [likeActive, setLikeActive] = useState(isLike);
@@ -10,15 +10,18 @@ const Like = ({ isLike }) => {
   const handleClickLike = (e) => {
     const { currentTarget } = e;
 
-    if (currentTarget.classList.contains('isActive')) {
+    if (currentTarget.classList.contains("isActive")) {
       setLikeActive(false);
     } else {
       setLikeActive(true);
     }
-  }
+  };
 
   return (
-    <StyledButton className={likeActive ? 'isActive' : ''} onClick={handleClickLike}>
+    <StyledButton
+      className={likeActive ? "isActive" : ""}
+      onClick={handleClickLike}
+    >
       <IcLike />
     </StyledButton>
   );
@@ -41,16 +44,16 @@ const StyledButton = styled.button`
   height: 40px;
 
   .opacity-heart-inner {
-    transition: all .1s ease
+    transition: all 0.1s ease;
   }
 
   .opacity-heart-line use {
-    transition: fill .1s ease
+    transition: fill 0.1s ease;
   }
 
   &.isActive {
-    animation: ${productLikeActive} .5s ease;
-    
+    animation: ${productLikeActive} 0.5s ease;
+
     .opacity-heart-inner {
       opacity: 1;
       fill: ${colors.error};

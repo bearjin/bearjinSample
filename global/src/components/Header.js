@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import mixins from '../style/mixins';
-import { colors } from '../style/variables'; 
-import {
-  IcNotice,
-  IcSearch,
-  IcShoppingBag,
-} from './common/icon';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import mixins from "../style/mixins";
+import { colors } from "../style/variables";
+import { IcNotice, IcSearch, IcShoppingBag } from "./common/icon";
 
 const Header = ({ handleActivePopup }) => {
   const [noticeActive, setNoticeActive] = useState(false);
@@ -15,16 +11,26 @@ const Header = ({ handleActivePopup }) => {
   return (
     <StyledHeader>
       <StyldHeaderBox>
-        <StyledHeaderNoticeButton type="button" isActive={noticeActive} onClick={() => setNoticeActive(!noticeActive)}>
+        <StyledHeaderNoticeButton
+          type="button"
+          isActive={noticeActive}
+          onClick={() => setNoticeActive(!noticeActive)}
+        >
           <IcNotice />
         </StyledHeaderNoticeButton>
       </StyldHeaderBox>
       <StyledLogoA href="#">로고</StyledLogoA>
       <StyldHeaderBox>
-        <StyledHeaderButton type="button" onClick={() => handleActivePopup(true)}>
+        <StyledHeaderButton
+          type="button"
+          onClick={() => handleActivePopup(true)}
+        >
           <IcSearch />
         </StyledHeaderButton>
-        <StyledHeaderButton type="button" onClick={() => setShoppingCount(prev => prev < 10 ? ++prev : 0)}>
+        <StyledHeaderButton
+          type="button"
+          onClick={() => setShoppingCount((prev) => (prev < 10 ? ++prev : 0))}
+        >
           <IcShoppingBag />
           {!!shoppingCount && (
             <StyledHeaderShoppingCountSpan>
@@ -38,7 +44,7 @@ const Header = ({ handleActivePopup }) => {
 };
 
 const StyledHeader = styled.header`
-  ${mixins.position('sticky', null, 0, null, null)};
+  ${mixins.position("sticky", null, 0, null, null)};
 
   display: flex;
   align-items: center;
@@ -64,21 +70,23 @@ const StyledHeaderButton = styled.button`
 `;
 
 const StyledHeaderNoticeButton = styled(StyledHeaderButton)`
-  ${({isActive}) => isActive && css`
-    &::before {
-      ${mixins.position('absolute', null, 0, null, 0)};
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      &::before {
+        ${mixins.position("absolute", null, 0, null, 0)};
 
-      width: 5px;
-      height: 5px;
-      border-radius: 100%;
-      background-color: rgba(0, 120, 255);
-      content: '';
-    }
-  `}
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        background-color: rgba(0, 120, 255);
+        content: "";
+      }
+    `}
 `;
 
 const StyledHeaderShoppingCountSpan = styled.span`
-  ${mixins.position('absolute', null, null, '-4px', '-4px')};
+  ${mixins.position("absolute", null, null, "-4px", "-4px")};
 
   display: inline-flex;
   justify-content: center;

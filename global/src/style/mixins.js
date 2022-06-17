@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
 const flexCenter = css`
   display: flex;
@@ -27,7 +27,9 @@ const fadeInAndOut = css`
   visibility: hidden;
   opacity: 0;
 
-  ${({ isActive }) => isActive && `
+  ${({ isActive }) =>
+    isActive &&
+    `
     visibility: visible;
     opacity: 1;
   `}
@@ -37,11 +39,13 @@ const textOverflow = (line = 1) => css`
   text-overflow: ellipsis;
   overflow: hidden;
 
-  ${line > 1 ? `
+  ${line > 1
+    ? `
     display: -webkit-box;
     -webkit-line-clamp: ${line};
     -webkit-box-orient: vertical;
-  ` : `white-space: nowrap;`}
+  `
+    : `white-space: nowrap;`}
 `;
 
 const mixins = {
@@ -50,6 +54,6 @@ const mixins = {
   overflowScroll,
   fadeInAndOut,
   textOverflow,
-}
+};
 
 export default mixins;
