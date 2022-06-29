@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { hot } from "react-hot-loader/root";
+// import { hot } from "react-hot-loader/root";
 import GlobalStyles from "./style/GlobalStyles";
 import Header from "./components/Header";
 import ProductList from "./components/productList/ProductList";
@@ -27,4 +27,4 @@ const App = () => {
   );
 };
 
-export default hot(App);
+export default App;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { desktop, colors } from "../../style/variables";
+import lottie from "lottie-web";
+import Dim from './Dim';
 
 const introLayerData = [
   {
@@ -34,12 +36,16 @@ everywhere around the world.`,
   },
 ];
 
-const IntroLayer = ({ isLayerHidden, handleLayerHidden }) => {
+const IntroLayer = () => {
   const SECONDS = 5;
   const MAX_CONTENT = introLayerData.length - 1;
   const [count, setCount] = useState(0);
+  const [isLayerHidden, setLayerHidden] = useState(false);
   const barWidth = useRef(0);
   const progressBarRef = useRef([]);
+  const lottieRef = useRef(null);
+  const animationRef = useRef();
+  const animationStateRef = useRef(false);
 
   useEffect(() => {
     const barAnimation = setInterval(() => {
@@ -64,86 +70,129 @@ const IntroLayer = ({ isLayerHidden, handleLayerHidden }) => {
     };
   }, [count, MAX_CONTENT]);
 
+  useEffect(() => {
+    if (lottieRef.current) {
+      animationRef.current = lottie.loadAnimation({
+        container: lottieRef.current,
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'https://static.musinsa.com/musinsaUI/global/lottie/introLayer-blank.json'
+      });
+      
+      animationRef.current.addEventListener('data_failed', () => {
+        console.log('failed');
+      });
+
+      animationRef.current.addEventListener('DOMLoaded', () => {
+        console.log('success');
+        animationStateRef.current = true;
+        if (animationRef.current) animationRef.current.playSegments([0, 60], true);
+      });
+    }
+
+    return () => {
+      if (animationRef.current) animationRef.current.destroy();
+    }
+  }, []);
+
+  useEffect(() => {
+    const animationRange = [
+      [0, 60],
+      [60, 120],
+      [120, 450],
+    ];
+
+    if (animationRef.current && animationStateRef.current) {
+      if (count <= 2) {
+        animationRef.current.playSegments(animationRange[count], true);
+      }
+    }
+  }, [count]);
+
   return (
-    <StyledLayer isLayerHidden={isLayerHidden}>
-      <StyledLayerContent>
-        <StyledTitleWrap isActive={count === MAX_CONTENT}>
-          <StyledTitleBox>
-            <StyledTitle>WEAR THE</StyledTitle>
-            <StyledTitle>[Seoul]</StyledTitle>
-          </StyledTitleBox>
-        </StyledTitleWrap>
-        <StyledInformation>
-          {introLayerData.map(({ text }, index) => {
-            return (
-              <StyledInformationItem
-                key={index}
-                isPrev={count > index}
-                isActive={count === index}
-              >
-                {index === MAX_CONTENT ? (
-                  <StyledInformationBox position={"center"}>
-                    <StyledSubTitle>
-                      WEAR THE <StyledBraket />
-                    </StyledSubTitle>
-                    <StyledTitle>MUSINSA</StyledTitle>
-                  </StyledInformationBox>
-                ) : (
-                  <StyledInformationBox>
-                    <StyledText>{text}</StyledText>
-                  </StyledInformationBox>
-                )}
-              </StyledInformationItem>
-            );
-          })}
-        </StyledInformation>
-        <StyledImageList>
-          {introLayerData.map(({ imageUrl }, index) => {
-            return (
-              <StyledImageItem
-                key={index}
-                isPrev={count > index}
-                isNext={count + 1 === index}
-                isActive={count === index}
-              >
-                <StyledImageBox isScale={count >= index}>
-                  <img src={imageUrl} alt="intro layer image" />
-                </StyledImageBox>
-              </StyledImageItem>
-            );
-          })}
-        </StyledImageList>
-      </StyledLayerContent>
-      <StyledBottomWrap isActive={count === MAX_CONTENT}>
-        <StyledProgress>
-          {introLayerData.map((item, index) => {
-            return (
-              <StyledProgressItem key={index} isActive={count === index}>
-                <StyledProgressBar
-                  ref={(el) => {
-                    if (el !== null) progressBarRef.current[index] = el;
-                  }}
-                />
-              </StyledProgressItem>
-            );
-          })}
-        </StyledProgress>
-        <StyledNextButton
-          onClick={() => {
-            setCount((prev) => prev + 1);
-            barWidth.current = 0;
-          }}
-        >
-          Next
-          <StyledNextButtonBar />
-        </StyledNextButton>
-      </StyledBottomWrap>
-      <StyledShopNow isActive={count === MAX_CONTENT}>
-        <StyledShopNowButton onClick={() => handleLayerHidden(true)}>
-          Shop Now
-        </StyledShopNowButton>
-      </StyledShopNow>
-    </StyledLayer>
+    <>
+      <Dim isLayerHidden={isLayerHidden} />
+      <StyledLayer isLayerHidden={isLayerHidden}>
+        <StyledLayerContent>
+          <StyledTitleWrap isActive={count === MAX_CONTENT}>
+            <StyledTitleBox>
+              <StyledTitle>WEAR THE</StyledTitle>
+              <StyledLottie ref={lottieRef}></StyledLottie>
+            </StyledTitleBox>
+          </StyledTitleWrap>
+          <StyledInformation>
+            {introLayerData.map(({ text }, index) => {
+              return (
+                <StyledInformationItem
+                  key={index}
+                  isPrev={count > index}
+                  isActive={count === index}
+                >
+                  {index === MAX_CONTENT ? (
+                    <StyledInformationBox position={"center"}>
+                      <StyledSubTitle>
+                        WEAR THE <StyledBraket />
+                      </StyledSubTitle>
+                      <StyledTitle>MUSINSA</StyledTitle>
+                    </StyledInformationBox>
+                  ) : (
+                    <StyledInformationBox>
+                      <StyledText>{text}</StyledText>
+                    </StyledInformationBox>
+                  )}
+                </StyledInformationItem>
+              );
+            })}
+          </StyledInformation>
+          <StyledImageList>
+            {introLayerData.map(({ imageUrl }, index) => {
+              return (
+                <StyledImageItem
+                  key={index}
+                  isPrev={count > index}
+                  isNext={count + 1 === index}
+                  isActive={count === index}
+                >
+                  <StyledImageBox isScale={count >= index}>
+                    <img src={imageUrl} alt="intro layer" />
+                  </StyledImageBox>
+                </StyledImageItem>
+              );
+            })}
+          </StyledImageList>
+        </StyledLayerContent>
+        <StyledBottomWrap isActive={count === MAX_CONTENT}>
+          <StyledProgress>
+            {introLayerData.map((item, index) => {
+              return (
+                <StyledProgressItem key={index} isActive={count === index}>
+                  <StyledProgressBar
+                    ref={(el) => {
+                      if (el !== null) progressBarRef.current[index] = el;
+                    }}
+                  />
+                </StyledProgressItem>
+              );
+            })}
+          </StyledProgress>
+          <StyledNextButton
+            onClick={() => {
+              setCount((prev) => prev + 1);
+              barWidth.current = 0;
+            }}
+          >
+            Next
+            <StyledNextButtonBar />
+          </StyledNextButton>
+        </StyledBottomWrap>
+        <StyledShopNow isActive={count === MAX_CONTENT}>
+          <StyledShopNowButton onClick={() => setLayerHidden(true)}>
+            Shop Now
+          </StyledShopNowButton>
+        </StyledShopNow>
+      </StyledLayer>
+    </>
   );
 };
 
@@ -177,11 +226,11 @@ const StyledLayer = styled.div`
   z-index: 110;
 
   ${desktop} {
-    top: 148px;
+    top: 50%;
     left: 50%;
     width: 480px;
     height: 600px;
-    margin-left: -240px;
+    margin: -300px 0 0 -240px;
   }
 `;
 
@@ -190,6 +239,11 @@ const StyledLayerContent = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+`;
+
+const StyledLottie = styled.div`
+  width: 250px;
+  height: 55px;
 `;
 
 const scaleAnimation = keyframes`
