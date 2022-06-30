@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import mixins from "../style/mixins";
+import { overflowScroll } from "../style/mixins";
 import { colors } from "../style/variables";
 import FilterJson from "../data/categoryFilter.json";
 
@@ -31,7 +31,7 @@ const Filter = ({ category, handleChangeType }) => {
 };
 
 const StyledFilterWrap = styled.section`
-  ${mixins.overflowScroll};
+  ${overflowScroll};
 
   display: flex;
 

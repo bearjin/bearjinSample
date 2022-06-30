@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import mixins from "../style/mixins";
+import { position, flexCenter } from "../style/mixins";
 import { colors } from "../style/variables";
 import {
   IcMenubarSearch,
@@ -46,7 +46,7 @@ const StyledMenuNavWrap = styled.div`
 `;
 
 const StyledMenuNav = styled.nav`
-  ${mixins.position("fixed", 0, null, 0, null)};
+  ${position("fixed", 0, null, 0, null)};
 
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@ const StyledMenuNav = styled.nav`
 `;
 
 const StyledMenuLinkA = styled.a`
-  ${mixins.flexCenter};
+  ${flexCenter};
 
   flex: 1;
   flex-direction: column;
@@ -70,7 +70,7 @@ const StyledMenuLinkA = styled.a`
 `;
 
 const StyledProfileIconSpan = styled.span`
-  ${mixins.flexCenter};
+  ${flexCenter};
 
   width: 24px;
   height: 24px;

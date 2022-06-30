@@ -1,12 +1,12 @@
 import { css } from "styled-components";
 
-const flexCenter = css`
+export const flexCenter = css`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const position = (type, left, top, bottom, right) => css`
+export const position = (type, left, top, bottom, right) => css`
   position: ${type};
   left: ${left};
   top: ${top};
@@ -14,7 +14,7 @@ const position = (type, left, top, bottom, right) => css`
   right: ${right};
 `;
 
-const overflowScroll = css`
+export const overflowScroll = css`
   overflow-x: scroll;
   white-space: nowrap;
 
@@ -23,7 +23,7 @@ const overflowScroll = css`
   }
 `;
 
-const fadeInAndOut = css`
+export const fadeInAndOut = css`
   visibility: hidden;
   opacity: 0;
 
@@ -35,7 +35,7 @@ const fadeInAndOut = css`
   `}
 `;
 
-const textOverflow = (line = 1) => css`
+export const textOverflow = (line = 1) => css`
   text-overflow: ellipsis;
   overflow: hidden;
 
@@ -48,12 +48,10 @@ const textOverflow = (line = 1) => css`
     : `white-space: nowrap;`}
 `;
 
-const mixins = {
-  flexCenter,
-  position,
-  overflowScroll,
-  fadeInAndOut,
-  textOverflow,
-};
-
-export default mixins;
+export const mixinBlindScroll = css`
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

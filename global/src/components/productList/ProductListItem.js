@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import mixins from "../../style/mixins";
+import { position, flexCenter, textOverflow } from "../../style/mixins";
 import { colors } from "../../style/variables";
 import Like from "../Like";
 import Label from "../Label";
@@ -76,7 +76,7 @@ const StyledThumnailDiv = styled.div`
 `;
 
 const StyledImageLinkA = styled.a`
-  ${mixins.position("absolute", 0, 0)};
+  ${position("absolute", 0, 0)};
 
   width: 100%;
   height: 100%;
@@ -87,7 +87,7 @@ const StyledImageBoxDiv = styled.div`
   height: 100%;
 
   img {
-    ${mixins.position("absolute", "50%", "50%")};
+    ${position("absolute", "50%", "50%")};
 
     width: 100%;
     transform: translate(-50%, -50%);
@@ -97,7 +97,7 @@ const StyledImageBoxDiv = styled.div`
     isSoldOut &&
     css`
       &::after {
-        ${mixins.position("absolute", 0, 0, 0, 0)};
+        ${position("absolute", 0, 0, 0, 0)};
 
         background-color: rgba(255, 255, 255, 0.8);
         content: "";
@@ -106,8 +106,8 @@ const StyledImageBoxDiv = styled.div`
 `;
 
 const StyledProductNumberSpan = styled.span`
-  ${mixins.flexCenter};
-  ${mixins.position("absolute", 0, 0)};
+  ${flexCenter};
+  ${position("absolute", 0, 0)};
 
   width: 30px;
   height: 30px;
@@ -116,7 +116,7 @@ const StyledProductNumberSpan = styled.span`
 `;
 
 const StyledProductLabelWrapDiv = styled.div`
-  ${mixins.position("absolute", 0, null, 0, null)};
+  ${position("absolute", 0, null, 0, null)};
 `;
 
 const StyledInformationA = styled.a`
@@ -124,7 +124,7 @@ const StyledInformationA = styled.a`
 `;
 
 const StyledNameP = styled.p`
-  ${mixins.textOverflow};
+  ${textOverflow};
 
   font-weight: ${({ strong }) => strong && "bold;"};
 
@@ -138,7 +138,7 @@ const StyledPriceP = styled.p`
   padding-top: 30px;
 
   del {
-    ${mixins.position("absolute", 0, "10px")};
+    ${position("absolute", 0, "10px")};
 
     font-weight: bold;
     font-size: 12px;
@@ -153,7 +153,7 @@ const StyledSaleRateSpan = styled.span`
 `;
 
 const StyledLikeDiv = styled.div`
-  ${mixins.position("absolute", null, null, "15px", "15px")};
+  ${position("absolute", null, null, "15px", "15px")};
 `;
 
 export default ProductListItem;

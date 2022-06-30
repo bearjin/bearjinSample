@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import mixins from "../style/mixins";
+import { flexCenter } from "../style/mixins";
 import { colors } from "../style/variables";
 import { IcLike } from "./common/icon";
 
@@ -38,7 +38,7 @@ const productLikeActive = keyframes`
 `;
 
 const StyledButton = styled.button`
-  ${mixins.flexCenter};
+  ${flexCenter};
 
   width: 40px;
   height: 40px;

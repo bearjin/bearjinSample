@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import mixins from "../style/mixins";
+import { position } from "../style/mixins";
 import { colors } from "../style/variables";
 
 const Popup = ({ isActive, handleActivePopup }) => {
@@ -26,13 +26,13 @@ const StyledWrap = styled.section`
 `;
 
 const StyledDim = styled.div`
-  ${mixins.position("fixed", 0, 0, 0, 0)};
+  ${position("fixed", 0, 0, 0, 0)};
 
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const StyledInner = styled.div`
-  ${mixins.position(
+  ${position(
     "fixed",
     0,
     null,
@@ -48,7 +48,7 @@ const StyledInner = styled.div`
     isActive ? "translateY(0)" : "translateY(100%)"};
 
   &::before {
-    ${mixins.position("absolute", "50%", "15px")};
+    ${position("absolute", "50%", "15px")};
 
     width: 60px;
     height: 4px;
@@ -68,7 +68,7 @@ const StyledContent = styled.div`
 `;
 
 const StyledCloseButton = styled.button`
-  ${mixins.position("absolute", 0, 0)};
+  ${position("absolute", 0, 0)};
 
   width: 100%;
   height: 30px;

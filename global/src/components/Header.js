@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import mixins from "../style/mixins";
+import { position } from "../style/mixins";
 import { colors } from "../style/variables";
 import { IcNotice, IcSearch, IcShoppingBag } from "./common/icon";
 
@@ -44,7 +44,7 @@ const Header = ({ handleActivePopup }) => {
 };
 
 const StyledHeader = styled.header`
-  ${mixins.position("sticky", null, 0, null, null)};
+  ${position("sticky", null, 0, null, null)};
 
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@ const StyledHeaderNoticeButton = styled(StyledHeaderButton)`
     isActive &&
     css`
       &::before {
-        ${mixins.position("absolute", null, 0, null, 0)};
+        ${position("absolute", null, 0, null, 0)};
 
         width: 5px;
         height: 5px;
@@ -86,7 +86,7 @@ const StyledHeaderNoticeButton = styled(StyledHeaderButton)`
 `;
 
 const StyledHeaderShoppingCountSpan = styled.span`
-  ${mixins.position("absolute", null, null, "-4px", "-4px")};
+  ${position("absolute", null, null, "-4px", "-4px")};
 
   display: inline-flex;
   justify-content: center;
