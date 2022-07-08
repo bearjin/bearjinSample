@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import tableData from "../data/tableContent.json";
 
-const TabContent = ({ type }) => {
-  return tableData.data.map(({ tableFix, tableScroll }, index) => {
+const TabContent = ({ activeType }) => {
+  return tableData.data.map(({ type, tableFix, tableScroll }, index) => {
     return (
-      <StyledTabContent key={index}>
+      <StyledTabContent key={index} isActive={type === activeType}>
         <StyledTableFix>
           {tableFix.colGroup && (
             <colgroup>
@@ -58,7 +58,9 @@ const TabContent = ({ type }) => {
 export default TabContent;
 
 const StyledTabContent = styled.div`
+  display: ${({ isActive }) => (isActive ? "block" : "none")};
   position: relative;
+  margin-top: 30px;
 `;
 
 const CommonTable = styled.table`

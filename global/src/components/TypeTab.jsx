@@ -5,33 +5,41 @@ import { mixinBlindScroll } from "../style/mixins";
 const tabData = [
   {
     name: `Men's clothing`,
+    type: "men-clothes",
   },
   {
     name: `Women's clothing`,
+    type: "women-clothes",
   },
   {
     name: `Children's clothing`,
+    type: "kids-clothes",
   },
   {
     name: `Shoes general`,
+    type: "general-shoes",
   },
   {
     name: `Shoes children`,
+    type: "kids-shoes",
   },
 ];
 
-const TypeTab = () => {
+const TypeTab = ({ handleActiveType }) => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
     <StyledTab role="tablist">
-      {tabData.map(({ name }, index) => (
+      {tabData.map(({ name, type }, index) => (
         <StyledButton
           key={index}
           type="button"
           aria-selected={index === activeIdx}
           isActive={index === activeIdx}
-          onClick={() => setActiveIdx(index)}
+          onClick={() => {
+            setActiveIdx(index);
+            handleActiveType(type);
+          }}
         >
           {name}
         </StyledButton>

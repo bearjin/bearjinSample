@@ -8,9 +8,7 @@ import Filter from "./components/Filter";
 import Popup from "./components/Popup";
 import SearchBar from "./components/SearchBar";
 import Layer from "./components/layer/Layer";
-import SizeTab from "./components/SizeTab";
-import TypeTab from "./components/TypeTab";
-import TabContent from "./components/TabContent";
+import Size from "./components/Size";
 
 const App = () => {
   const [filterType, setFilterType] = useState("전체");
@@ -26,9 +24,7 @@ const App = () => {
       <MenubarBottom />
       <Popup isActive={popupActive} handleActivePopup={setPopupActive} /> */}
       {/* <Layer /> */}
-      <SizeTab />
-      <TypeTab />
-      <TabContent />
+      <Size />
     </>
   );
 };
