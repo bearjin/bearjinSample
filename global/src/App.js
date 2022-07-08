@@ -17,14 +17,14 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      {/* <Header handleActivePopup={setPopupActive} />
+      <Header handleActivePopup={setPopupActive} />
       <SearchBar />
       <Filter category={"ranking"} handleChangeType={setFilterType} />
       <ProductList filterType={filterType} />
       <MenubarBottom />
-      <Popup isActive={popupActive} handleActivePopup={setPopupActive} /> */}
+      <Popup isActive={popupActive} handleActivePopup={setPopupActive} />
       {/* <Layer /> */}
-      <Size />
+      {/* <Size /> */}
     </>
   );
 };

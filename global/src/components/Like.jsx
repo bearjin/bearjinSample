@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { flexCenter } from "../style/mixins";
 import { colors } from "../style/variables";
 import { IcLike } from "./common/icon";
@@ -7,27 +7,17 @@ import { IcLike } from "./common/icon";
 const Like = ({ isLike }) => {
   const [likeActive, setLikeActive] = useState(isLike);
 
-  const handleClickLike = (e) => {
-    const { currentTarget } = e;
-
-    if (currentTarget.classList.contains("isActive")) {
-      setLikeActive(false);
-    } else {
-      setLikeActive(true);
-    }
-  };
-
   return (
     <StyledButton
-      className={likeActive ? "isActive" : ""}
-      onClick={handleClickLike}
+      onClick={() => setLikeActive((prev) => !prev)}
+      isActive={likeActive}
     >
       <IcLike />
     </StyledButton>
   );
 };
 
-const productLikeActive = keyframes`
+const likeScaleMotion = keyframes`
   0% {
     transform: scale(1.2);
   }
@@ -51,18 +41,20 @@ const StyledButton = styled.button`
     transition: fill 0.1s ease;
   }
 
-  &.isActive {
-    animation: ${productLikeActive} 0.5s ease;
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      animation: ${likeScaleMotion} 0.5s ease;
 
-    .opacity-heart-inner {
-      opacity: 1;
-      fill: ${colors.error};
-    }
+      .opacity-heart-inner {
+        opacity: 1;
+        fill: ${colors.error};
+      }
 
-    .opacity-heart-line {
-      display: none;
-    }
-  }
+      .opacity-heart-line {
+        display: none;
+      }
+    `}
 `;
 
 export default Like;

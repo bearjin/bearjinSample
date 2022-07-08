@@ -9,24 +9,22 @@ const numberCommas = (number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const ProductListItem = ({
-  goodsNo,
-  goodsName,
-  price,
-  brandName,
-  imageUrl,
-  normalPrice,
-  isSale,
-  isExclusive,
-  isSoldOut,
-  saleRate,
-  linkUrl,
-  brandLinkUrl,
-  isLike,
-  type,
-  idx,
-}) => {
-  const LabelShow = isSale || isExclusive || isSoldOut;
+const ProductListItem = ({ item, idx }) => {
+  const {
+    goodsName,
+    price,
+    brandName,
+    imageUrl,
+    normalPrice,
+    isSale,
+    isExclusive,
+    isSoldOut,
+    saleRate,
+    linkUrl,
+    brandLinkUrl,
+    isLike,
+  } = item;
+  const isLabel = isSale || isExclusive || isSoldOut;
 
   return (
     <StyledListLi>
@@ -36,7 +34,7 @@ const ProductListItem = ({
             <img src={imageUrl} alt={goodsName} />
           </StyledImageBoxDiv>
           <StyledProductNumberSpan index={idx}>{idx}</StyledProductNumberSpan>
-          {LabelShow && (
+          {isLabel && (
             <StyledProductLabelWrapDiv>
               {isSale && <Label type={"isSale"} text={"설날 세일"} />}
               {isExclusive && (
@@ -126,7 +124,11 @@ const StyledInformationA = styled.a`
 const StyledNameP = styled.p`
   ${textOverflow};
 
-  font-weight: ${({ strong }) => strong && "bold;"};
+  ${({ strong }) =>
+    strong &&
+    css`
+      font-weight: bold;
+    `};
 
   & + & {
     margin-top: 10px;

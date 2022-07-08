@@ -18,46 +18,9 @@ const ProductList = ({ filterType }) => {
   return (
     <StyledWrapSection>
       <StyledListUl>
-        {newData.map(
-          (
-            {
-              goodsNo,
-              goodsName,
-              price,
-              brandName,
-              imageUrl,
-              normalPrice,
-              isSale,
-              saleRate,
-              linkUrl,
-              brandLinkUrl,
-              isSoldOut,
-              isExclusive,
-              isLike,
-              type,
-            },
-            index
-          ) => (
-            <ProductListItem
-              key={goodsNo}
-              goodsNo={goodsNo}
-              goodsName={goodsName}
-              price={price}
-              brandName={brandName}
-              imageUrl={imageUrl}
-              normalPrice={normalPrice}
-              isSale={isSale}
-              isExclusive={isExclusive}
-              isSoldOut={isSoldOut}
-              saleRate={saleRate}
-              linkUrl={linkUrl}
-              brandLinkUrl={brandLinkUrl}
-              isLike={isLike}
-              type={type}
-              idx={index + 1}
-            />
-          )
-        )}
+        {newData.map((item, index) => (
+          <ProductListItem key={index} item={item} idx={index + 1} />
+        ))}
       </StyledListUl>
     </StyledWrapSection>
   );
